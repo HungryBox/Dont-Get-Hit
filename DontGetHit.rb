@@ -44,7 +44,7 @@ class TitleWindow < Gosu::Window
     @exitImage = Gosu::Image.new(self, "media/exitButton.png", false)
 
 # CREDITS WINDOW INIT
-    @credits = Gosu::Image.from_text(self, "Ty Ian, David, George",
+    @credits = Gosu::Image.from_text(self, "Ian is the best, David, George sux",
      Gosu::default_font_name, 50, 50, 500, :center)
   end
 
