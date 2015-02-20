@@ -194,7 +194,7 @@ class TitleWindow < Gosu::Window
       @enemyBullets.each { |bullet| bullet.move }
 
       levelString = File.open("LevelGen.txt" , "r"){|levelGen| levelGen.read}
-
+      scanner = StringScanner.new(levelString)
 
 
         # levelChar = levelString.each_char #contense: l 1 , 1 0 , 0 , E
