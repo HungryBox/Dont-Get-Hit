@@ -1,4 +1,4 @@
-# README #
+`# README #
 
 * [Install 'Gosu'](https://github.com/jlnr/gosu/wiki/Getting-Started-on-OS-X)
 

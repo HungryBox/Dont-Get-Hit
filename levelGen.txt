@@ -1,4 +1,9 @@
-10,0,Enemy,100,0,Enemy,wait,10,
+Level1,10,0,E,100,0,E,W,10,
+level2,5,5,E
+
 
 -basic spawn will be: x,y,type
--to give levels use command: wait,lengthSeconds
+-to give levels use command: W,lengthSeconds
+
+
+(\d)

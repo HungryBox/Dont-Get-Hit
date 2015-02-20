@@ -193,9 +193,20 @@ class TitleWindow < Gosu::Window
       @playerBullets.each { |bullet| bullet.move }
       @enemyBullets.each { |bullet| bullet.move }
 
-      if @enemies.size < 100 then
-        @enemies.push(Enemy.new(self, rand(self.width), 0))
-      end
+      levelString = File.open("LevelGen.txt" , "r"){|levelGen| levelGen.read}
+
+
+
+        # levelChar = levelString.each_char #contense: l 1 , 1 0 , 0 , E
+        # if levelChar.next == 'l' then
+        #   @LevelNum = levelChar.next
+        #   levelChar.next
+        # if levelChar.next
+
+      #old code for random Enemies
+      # if @enemies.size < 100 then
+      #   @enemies.push(Enemy.new(self, rand(self.width), 0))
+      # end
 
     elsif @deathWindow then
       @enemies.delete_if do |enemy|
