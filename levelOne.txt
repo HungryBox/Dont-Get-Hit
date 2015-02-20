@@ -1,5 +1,4 @@
-Level1,10,0,E,100,0,E,W,10,
-level2,5,5,E
+10,0,E
 
 
 -basic spawn will be: x,y,type

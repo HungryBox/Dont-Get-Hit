@@ -193,15 +193,9 @@ class TitleWindow < Gosu::Window
       @playerBullets.each { |bullet| bullet.move }
       @enemyBullets.each { |bullet| bullet.move }
 
-      levelString = File.open("LevelGen.txt" , "r"){|levelGen| levelGen.read}
-      scanner = StringScanner.new(levelString)
 
 
-        # levelChar = levelString.each_char #contense: l 1 , 1 0 , 0 , E
-        # if levelChar.next == 'l' then
-        #   @LevelNum = levelChar.next
-        #   levelChar.next
-        # if levelChar.next
+
 
       #old code for random Enemies
       # if @enemies.size < 100 then
@@ -258,16 +252,26 @@ class TitleWindow < Gosu::Window
             @titleWindow = true
           end
         end
-
-
-
       end
-
-
-
-
     end
   end
+
+
+  def readFile
+      levelString = File.open("LevelOne.txt" , "r"){|levelOne| levelGen.read}
+      s = StringScanner.new(levelString)
+  end
+  def readGenEnemy (s)#make catch if bigger than 999
+    type = s.scan(/(.)/)
+    ex = s.scan(/^\d\d{2}?)/)
+    ey = s.scan(/(\d\d{2}?)/)
+  end
+        # levelChar = levelString.each_char #contense: l 1 , 1 0 , 0 , E
+        # if levelChar.next == 'l' then
+        #   @LevelNum = levelChar.next
+        #   levelChar.next
+        # if levelChar.next
+
 
   # User cursor appears on the screen
   def needs_cursor?
