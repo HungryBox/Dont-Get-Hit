@@ -8,7 +8,7 @@ class SpacePlayer
   # Initializes a player with the window, x, y
   def initialize (window, x, y)
     # Establishes a sprite for the palyer
-    @image = Gosu::Image.new(window, "media/Starfighter.bmp", false)
+    @image = Gosu::Image.new(window, "../media/Starfighter.bmp", false)
     # Initializes the x,y and last position
     @x, @y = x, y
     @lastPosX = @lastPosY = @lastShot = 0

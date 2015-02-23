@@ -20,9 +20,9 @@ class Bullet
 			# or even be determined in the bullet class
 			# Assigns filepath to string
 			if(!playerBullet) then
-				string = "media/EnemyBullet.bmp"
+				string = "../media/EnemyBullet.bmp"
 			else
-				string = "media/PlayerBullet.bmp"
+				string = "../media/PlayerBullet.bmp"
 			end
 			# Creates image from string filepath
 			@image = Gosu::Image.new(window, string, false)
