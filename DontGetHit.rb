@@ -202,6 +202,8 @@ class TitleWindow < Gosu::Window
       @playerBullets.delete_if { |bullet| bullet.outofBounds }
       @enemyBullets.delete_if { |bullet| bullet.outofBounds }
 
+
+      readFile("levelOne.txt")
       @enemies.each do |enemy|
         enemy.move
         bullet = enemy.shoot
@@ -257,7 +259,7 @@ class TitleWindow < Gosu::Window
   def genEnemy(s)#make catch if bigger than 999
     type = s.scan(/(.)/)
       #for the eventual intergration of difrent types of enemies
-    ex = s.scan(/^\d\d{2}?)/)#saves the first diget and an optional 2 more digets
+    ex = s.scan(/^(\d\d{2}?)/)#saves the first diget and an optional 2 more digets
     ey = s.scan(/(\d\d{2}?)/)
     @enemies.push(Enemy.new(self, ex,ey))
 
