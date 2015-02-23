@@ -38,7 +38,7 @@ This is a bullet hell game developed by Armada Roosevelt.
 
 ### Contribution guidelines ###
 
-* Writing tests
+* Writing tests2
 * Code review
 * Other guidelines
 
