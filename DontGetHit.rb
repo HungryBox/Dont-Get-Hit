@@ -6,7 +6,7 @@ require './SpacePlayer'
 require './Enemy'
 require './Bullet'
 
-# Becomes core for program/ Rename to DGH
+# Becomes core for program/ Rename to DGHa
 class TitleWindow < Gosu::Window
   # Initializes the program
   def initialize
