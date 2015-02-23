@@ -31,6 +31,7 @@ class TitleWindow < Gosu::Window
     @creditWindow = @playWindow = @deathWindow = false
 
 
+
 # GAME WINDOW INIT
     @player = SpacePlayer.new(self, self.width/2.0, self.height/2.0)
     @enemies = Array.new
