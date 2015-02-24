@@ -1,5 +1,7 @@
 require 'gosu'
 
+require './Dev'
+
 # A class to represent a basic player
 class SpacePlayer
   # Allows other classes to read if the player is kill
@@ -17,7 +19,7 @@ class SpacePlayer
     # Stores instance of window
     @window = window
     # Establishes constant velocity for x and y directions
-    @VELOCITY = 3
+    @VELOCITY = Dev::PlayerVelocity
     # Boolean which measures if the ship is dead or not
     @isKill = false
   end
@@ -62,8 +64,8 @@ class SpacePlayer
     end
     # Slows down the ship if no new input is given
     # Lower values for tighter controls
-    @vel_x *= 0.50
-    @vel_y *= 0.50
+    @vel_x *= Dev::PlayerInertiaX
+    @vel_y *= Dev::PlayerInertiaY
   end
 
   # Draws the ship centered on the x, y
@@ -73,14 +75,14 @@ class SpacePlayer
 
   # Returns a bullet to be shot with velocity of 2 upwards
   def shoot
-      return Bullet.new(@window, @x, @y, 0, -2, true)
+      return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
   end
 
   # Changes isKill to true if any enemyBullets match the ship's current location
   # within a 5 pixel distance
   def checkCollide(enemyBullets)
     enemyBullets.each do |bullet|
-      if Gosu::distance(bullet.x, bullet.y, @x, @y) < 5
+      if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox
         @isKill = true
       end
     end

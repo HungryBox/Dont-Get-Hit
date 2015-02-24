@@ -1,5 +1,6 @@
 require 'gosu'
 require './ZOrder'
+require './Dev'
 require './Bullet'
 
 # Creates a basic enemy that moves down the screen and shoots predictably
@@ -10,7 +11,7 @@ class Enemy
 		@image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
 		# Initializes x,y, downward velocity, and ship angle
 		@x, @y = x, y
-		@vel = 1
+		@vel = Dev::SimpleEnemyVelocity
 		@angle = 180
 
 		# Stores distance from last shot
@@ -22,7 +23,7 @@ class Enemy
 		@window = window
 
 		# Defines the distance between shots
-		@SHOT_LAG = 100
+		@SHOT_LAG = Dev::SimpleEnemyShotLag
 	end
 
 	# Changes ship position to given x,y
@@ -63,7 +64,7 @@ class Enemy
 			@lastPosY = @y
 			# returns a bullet with a velocity 1 greater than the ship's
 			# velocity
-			return Bullet.new(@window, @x, @y, 0, @vel+1, false)
+			return Bullet.new(@window, @x, @y, 0, @vel+Dev::SimpleEnemyAdditionalBulletSpeed, false)
 		end
 	end
 
@@ -72,7 +73,7 @@ class Enemy
 	def checkCollide(playerBullets)
 		# Removes the bullet that shot the ship
 		playerBullets.reject! do |bullet|
-			if Gosu::distance(@x, @y, bullet.x, bullet.y) <= 10 then
+			if Gosu::distance(@x, @y, bullet.x, bullet.y) <= Dev::SimpleEnemyHitBox then
 				true
 			else
 				false
