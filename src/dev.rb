@@ -1,3 +1,5 @@
+require 'gosu'
+
 module Dev
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
@@ -9,4 +11,8 @@ module Dev
   SimpleEnemyShotLag = 100
   SimpleEnemyAdditionalBulletSpeed = 1
   SimpleEnemyHitBox = 10
+
+  FontName = Gosu::default_font_name
+  FontHeight = 20
+  FontSize = 20
 end
