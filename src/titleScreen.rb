@@ -1,5 +1,6 @@
 require 'gosu'
 require './ZOrder'
+require './Dev'
 
 # SO I CAN MOVE ELEMENTS TO A CLASS TO BE INITIALIZED AND DRAWN
 # BUT I NEED TO MAKE A BUTTON CHECK FUNCTIO
@@ -8,7 +9,7 @@ class TitleScreen
   def initialize(window)
     @window = window
     @title = Gosu::Image.from_text(@window, "Dont Get Hit by Armada",
-     Gosu::default_font_name, 50, 50, 500, :center)
+     Dev::FontName, 50, 50, 500, :center)
     # Sets playbutton image
     @playImage = Gosu::Image.new(@window, "../media/PlayButton.png", false)
     # Sets creditbutton image
@@ -29,32 +30,34 @@ class TitleScreen
      y_center+80, ZOrder::UI)
   end
 
-  # def update
-  #   if button_down? Gosu::MsLeft then
-  #       #Mouse is down and on @playImage
-  #       if @window.mouse_x >= @window.width/2.0-@playImage.width/2.0 and
-  #         @window.mouse_x <= @window.width/2.0+@playImage.width/2.0 then
-  #         if @window.mouse_y >= @window.height/2.0-20 and
-  #         @window.mouse_y <= @window.height/2.0-20+@playImage.height then
-  #           @titleWindow = false
-  #           @playWindow = true
-  #           @replay = true
-  #         end
-  #       end
+  def update
+    #Mouse is down and on @playImage
+    if @window.mouse_x >= @window.width/2.0-@playImage.width/2.0 and
+      @window.mouse_x <= @window.width/2.0+@playImage.width/2.0 then
+      if @window.mouse_y >= @window.height/2.0-20 and
+      @window.mouse_y <= @window.height/2.0-20+@playImage.height then
+        playWindow = true
+        replay = true
 
-  #       # Mouse is down and on @creditImage
-  #       # Mouse is on the correct x-axis
-  #       if @window.mouse_x >= @window.width/2.0-@creditImage.width/2.0 and
-  #         @window.mouse_x <= @window.width/2.0+@creditImage.width/2.0 then
-  #         # Mouse is on the correct y-axis
-  #         if @window.mouse_y >= @window.height/2.0+80 and
-  #         @window.mouse_y <= @window.height/2.0+80+@creditImage.height/2.0 then
-  #           # No longer title window
-  #           @titleWindow = false
-  #           # Now it's the credits window
-  #           @creditWindow = true
-  #         end
-  #       end
-  #   end
-  # end
+        return false, false, playWindow, false
+      end
+
+
+    # Mouse is down and on @creditImage
+    # Mouse is on the correct x-axis
+    elsif @window.mouse_x >= @window.width/2.0-@creditImage.width/2.0 and
+      @window.mouse_x <= @window.width/2.0+@creditImage.width/2.0 then
+      # Mouse is on the correct y-axis
+      if @window.mouse_y >= @window.height/2.0+80 and
+      @window.mouse_y <= @window.height/2.0+80+@creditImage.height/2.0 then
+        # Now it's the credits window
+        creditWindow = true
+
+        return false, creditWindow, false, false
+      end
+    else
+      titleWindow = true
+      return titleWindow, false, false, false
+    end
+  end
 end

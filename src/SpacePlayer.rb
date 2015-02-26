@@ -13,13 +13,16 @@ class SpacePlayer
     @image = Gosu::Image.new(window, "../media/Starfighter.bmp", false)
     # Initializes the x,y and last position
     @x, @y = x, y
-    @lastPosX = @lastPosY = @lastShot = 0
     # Initializes x-y-velocity
     @vel_x = @vel_y = 0
     # Stores instance of window
     @window = window
+
+    @lastTime = @seconds = 0
     # Establishes constant velocity for x and y directions
     @VELOCITY = Dev::PlayerVelocity
+
+    @SHOT_LAG = Dev::PlayerShotLag
     # Boolean which measures if the ship is dead or not
     @isKill = false
   end
@@ -75,7 +78,15 @@ class SpacePlayer
 
   # Returns a bullet to be shot with velocity of 2 upwards
   def shoot
+    if (Gosu::milliseconds - @lastTime) / 1000 == 1 then
+      @seconds += 1
+      @lastTime = Gosu::milliseconds()
+    end
+
+    if @seconds == @SHOT_LAG then
+      @seconds = 0
       return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
+    end
   end
 
   # Changes isKill to true if any enemyBullets match the ship's current location

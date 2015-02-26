@@ -14,13 +14,10 @@ class Enemy
 		@vel = Dev::SimpleEnemyVelocity
 		@angle = 180
 
-		# Stores distance from last shot
-		@lastShot = 0
-		# Stores position of the last time the ship shot a bullet
-		@lastPosX, @lastPosY = 0, 0
-
 		# Stores window
 		@window = window
+
+		@lastTime = @seconds = 0
 
 		# Defines the distance between shots
 		@SHOT_LAG = Dev::SimpleEnemyShotLag
@@ -54,16 +51,13 @@ class Enemy
 
 	# Returns a bullet to be shot with velocity
 	def shoot
-		# Updates last shot distance if it can't shoot
-		if @lastShot <= @SHOT_LAG then
-			@lastShot = Gosu::distance(@x, @y, @lastPosX, @lastPosY)
-		else
-			# Preps a new bullet and resets last shot distance
-			@lastShot = 0
-			@lastPosX = @x
-			@lastPosY = @y
-			# returns a bullet with a velocity 1 greater than the ship's
-			# velocity
+		if (Gosu::milliseconds - @lastTime) / 1000 == 1 then
+			@seconds += 1
+			@lastTime = Gosu::milliseconds()
+		end
+
+		if @seconds >= @SHOT_LAG then
+			@seconds = 0
 			return Bullet.new(@window, @x, @y, 0, @vel+Dev::SimpleEnemyAdditionalBulletSpeed, false)
 		end
 	end

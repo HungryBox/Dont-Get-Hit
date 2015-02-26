@@ -34,7 +34,7 @@ class Window < Gosu::Window
     end
 
     # timer test
-    if button_down? Gosu::MsLeft then
+    if button_down? Gosu::MsLeft th
       if @button.isPushed(self.mouse_x, self.mouse_y) then
         if (Gosu::milliseconds - @last_time) / 1000 >= 0.5
           @seconds += 1
