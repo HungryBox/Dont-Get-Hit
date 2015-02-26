@@ -14,9 +14,11 @@ class GameScreen
     @enemyBullets = Array.new
 
     @deathImage = Gosu::Image.new(@window, "../media/deathMessage.png", false)
-    @playAgainImage = Gosu::Image.new(@window, "../media/playAgainButton.png", false)
-    @exitImage = Gosu::Image.new(@window, "../media/exitButton.png", false)
-  end
+    @playAgainButton = Button.new(200, 100, @window.width/2, @window.height/2,
+      "Play Again", @window, ZOrder::UI)
+    @exitButton = Button.new(200, 100, @window.width/2, @window.height/4*3,
+      "Exit", @window, ZOrder::UI)
+    end
 
   def restart
     @player = SpacePlayer.new(@window, @window.width/2.0, @window.height/2.0)
@@ -39,8 +41,8 @@ class GameScreen
 
     if @player.isKill then
       @deathImage.draw(x_center-@deathImage.width/2.0, y_center-250, ZOrder::UI)
-      @playAgainImage.draw(x_center-@playAgainImage.width/2.0, y_center+50, ZOrder::UI)
-      @exitImage.draw(x_center-@exitImage.width/2.0, y_center+130, ZOrder::UI)
+      @playAgainButton.draw
+      @exitButton.draw
     end
   end
 
@@ -61,6 +63,15 @@ class GameScreen
 
       @player.move
       @player.checkCollide(@enemyBullets)
+    else
+      if @window.button_down? Gosu::MsLeft then
+        if @playAgainButton.isPushed(@window.mouse_x, @window.mouse_y) then
+          restart
+        end
+        if @exitButton.isPushed(@window.mouse_x, @window.mouse_y) then
+          return Hash[title:true, game:false]
+        end
+      end
     end
 
     @enemies.delete_if do |enemy|
@@ -93,6 +104,7 @@ class GameScreen
     if @enemies.size < 5 then
       @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     end
+
     return Hash[game:true]
   end
 end

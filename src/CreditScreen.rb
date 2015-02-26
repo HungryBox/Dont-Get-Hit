@@ -9,7 +9,7 @@ class CreditScreen
     @window = window
     @credits = Gosu::Image.from_text(@window, "Ty Ian, David, George",
      Dev::FontName, 50, 50, 500, :center)
-    @backButton = Button.new(200, 100, @window.width/2, @window.height/2,
+    @backButton = Button.new(200, 100, @window.width/2, @window.height/4*3,
       "Back", @window, ZOrder::UI)
   end
 
@@ -24,6 +24,6 @@ class CreditScreen
         return Hash[title:true, credit:false]
       end
     end
-    return Hash[title:false, credit:true]
+    return Hash[credit:true]
   end
 end
