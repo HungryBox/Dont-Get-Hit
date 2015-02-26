@@ -1,5 +1,7 @@
 require 'gosu'
 require './ZOrder'
+require './Dev'
+
 
 require './TitleScreen'
 require './CreditScreen'
@@ -8,6 +10,7 @@ require './GameScreen'
 # require './ShopScreen'
 
 # Need option screen
+# Screen state object?
 
 class DontGetHit < Gosu::Window
   def initialize
@@ -17,8 +20,8 @@ class DontGetHit < Gosu::Window
 
     @lastTime = @seconds = 0
 
-    @screenState = {title: false, credit: false,
-      game: true, level: false, shop: false}
+    @screenState = Hash[title: true, credit: false,
+      game: false, level: false, shop: false]
 
     @titleScreen = TitleScreen.new(self)
     @creditScreen = CreditScreen.new(self)
@@ -54,24 +57,24 @@ class DontGetHit < Gosu::Window
         @screenState[:title] = true
       end
 
-      if (Gosu::milliseconds - @lastTime)/1000 >= 1 then
-        @seconds += 1
-        @lastTime = Gosu::milliseconds
-      end
-
       if @seconds == 1 then
         if @screenState[:title] then
           self.close
         end
       end
+
+      if (Gosu::milliseconds - @lastTime)/1000 >= Dev::EscapeLag then
+        @seconds += 1
+        @lastTime = Gosu::milliseconds
+      end
     end
 
     if @screenState[:title] then
-      @titleScreen.update
+      @screenState = @screenState.merge(@titleScreen.update)
     elsif @screenState[:credit] then
-      @creditScreen.update
+      @screenState = @screenState.merge(@creditScreen.update)
     elsif @screenState[:game] then
-      @gameScreen.update
+      @screenState = @screenState.merge(@gameScreen.update)
     elsif @screenState[:level] then
     elsif @screenState[:shop] then
     end

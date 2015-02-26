@@ -1,7 +1,7 @@
 require 'gosu'
 
-require './Dev'
-require './ZOrder'
+require_relative './Dev'
+require_relative './ZOrder'
 
 class Button
   def initialize(width, height, xcenter, ycenter, text, window, zorder)
@@ -9,7 +9,6 @@ class Button
     @height = height
     @xcenter = xcenter
     @ycenter = ycenter
-    # @image = image?
     @text = text
     @font = Dev::FontSize
     @window = window

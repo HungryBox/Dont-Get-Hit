@@ -18,7 +18,7 @@ class SpacePlayer
     # Stores instance of window
     @window = window
 
-    @lastTime = @seconds = 0
+    @lastTime = @milliseconds = 0
     # Establishes constant velocity for x and y directions
     @VELOCITY = Dev::PlayerVelocity
 
@@ -78,13 +78,13 @@ class SpacePlayer
 
   # Returns a bullet to be shot with velocity of 2 upwards
   def shoot
-    if (Gosu::milliseconds - @lastTime) / 1000 == 1 then
-      @seconds += 1
+    if (Gosu::milliseconds - @lastTime) >= 1 then
+      @milliseconds += 1
       @lastTime = Gosu::milliseconds()
     end
 
-    if @seconds == @SHOT_LAG then
-      @seconds = 0
+    if @milliseconds == @SHOT_LAG then
+      @milliseconds = 0
       return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
     end
   end

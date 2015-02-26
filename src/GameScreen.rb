@@ -90,9 +90,10 @@ class GameScreen
     @enemyBullets.each {|bullet| bullet.move}
 
     # Spawn enemies
-    if @enemies.size < 50 then
+    if @enemies.size < 5 then
       @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     end
+    return Hash[game:true]
   end
 end
 

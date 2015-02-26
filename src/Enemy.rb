@@ -17,7 +17,7 @@ class Enemy
 		# Stores window
 		@window = window
 
-		@lastTime = @seconds = 0
+		@lastTime = @milliseconds = 0
 
 		# Defines the distance between shots
 		@SHOT_LAG = Dev::SimpleEnemyShotLag
@@ -51,13 +51,13 @@ class Enemy
 
 	# Returns a bullet to be shot with velocity
 	def shoot
-		if (Gosu::milliseconds - @lastTime) / 1000 == 1 then
-			@seconds += 1
+		if (Gosu::milliseconds - @lastTime) >= 1 then
+			@milliseconds += 1
 			@lastTime = Gosu::milliseconds()
 		end
 
-		if @seconds >= @SHOT_LAG then
-			@seconds = 0
+		if @milliseconds >= @SHOT_LAG then
+			@milliseconds = 0
 			return Bullet.new(@window, @x, @y, 0, @vel+Dev::SimpleEnemyAdditionalBulletSpeed, false)
 		end
 	end
