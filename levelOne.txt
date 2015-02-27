@@ -1,4 +1,4 @@
-E,10,0
+E,10,0,E,
 
 
-
+-never add a or y value bigger than 999(will break program)

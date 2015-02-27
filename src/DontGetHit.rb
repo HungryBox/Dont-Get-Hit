@@ -8,6 +8,9 @@ require './CreditScreen'
 require './GameScreen'
 # require './LevelScreen'
 # require './ShopScreen'
+require 'strscan'
+require 'io/console'
+
 
 # Need option screen
 # Screen state object?
@@ -77,6 +80,17 @@ class DontGetHit < Gosu::Window
       @screenState = @screenState.merge(@gameScreen.update)
     elsif @screenState[:level] then
     elsif @screenState[:shop] then
+    end
+  end
+
+  def genEnimy file
+    gameFile = IO.read("#{file}")
+    s = StringScanner.new(gameFile)
+    eType = s.scan()
+    ex = s.scan(/(\d\d{2}?)/)
+    ey = s.scan(/(\d\d{2}?)/)
+    if(eType == 'E') then
+      Enemy.new(this,ex,ey)
     end
   end
 
