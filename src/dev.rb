@@ -1,4 +1,5 @@
 require 'gosu'
+require './Color'
 
 module Dev
   EscapeLag = 3
@@ -16,6 +17,11 @@ module Dev
   SimpleEnemyHitBox = 10
 
   FontName = Gosu::default_font_name
-  FontHeight = 50
-  FontSize = 50
+  FontHeight = 45
+  FontSize = 20
+  LineSpacing = 0
+  LineWidth = 124
+  TextAlign = :center
+
+  ButtonColor = Color::BLUE
 end

@@ -14,10 +14,12 @@ class GameScreen
     @enemyBullets = Array.new
 
     @deathImage = Gosu::Image.new(@window, "../media/deathMessage.png", false)
-    @playAgainButton = Button.new(200, 100, @window.width/2, @window.height/2,
-      "Play Again", @window, ZOrder::UI)
-    @exitButton = Button.new(200, 100, @window.width/2, @window.height/4*3,
-      "Exit", @window, ZOrder::UI)
+    @playAgainButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      @window.width/2, @window.height/2, "Play Again", @window,
+      ZOrder::UI)
+    @exitButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      @window.width/2, @window.height/4*3, "Exit", @window,
+      ZOrder::UI)
     end
 
   def restart

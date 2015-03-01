@@ -3,6 +3,8 @@ require 'gosu'
 require_relative './Dev'
 require_relative './ZOrder'
 
+# Incorporate feature to allow for polymorphism if i pass an image or text
+
 class Button
   def initialize(width, height, xcenter, ycenter, text, window, zorder)
     @width = width
@@ -14,13 +16,19 @@ class Button
     @window = window
 
     @image = Gosu::Image.from_text(@window, @text,
-      Dev::FontName, Dev::FontHeight)
+      Dev::FontName, Dev::FontHeight, Dev::LineSpacing,
+      Dev::LineWidth, Dev::TextAlign)
 
     @zorder = zorder
   end
 
   def draw
-    @image.draw(@xcenter, @ycenter, @zorder)
+    @window.draw_quad(@xcenter-@width,@ycenter-@height,Dev::ButtonColor,
+      @xcenter+@width,@ycenter-@height,Dev::ButtonColor,
+      @xcenter-@width,@ycenter+@height,Dev::ButtonColor,
+      @xcenter+@width,@ycenter+@height,Dev::ButtonColor,
+      ZOrder::ButtonBacker)
+    @image.draw(@xcenter-@width/2, @ycenter-@height/2, @zorder)
   end
 
   def isPushed(mx, my)

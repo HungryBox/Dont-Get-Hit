@@ -9,8 +9,9 @@ class CreditScreen
     @window = window
     @credits = Gosu::Image.from_text(@window, "Ty Ian, David, George",
      Dev::FontName, 50, 50, 500, :center)
-    @backButton = Button.new(200, 100, @window.width/2, @window.height/4*3,
-      "Back", @window, ZOrder::UI)
+    @backButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      @window.width/2, @window.height/5*4, "Back", @window,
+      ZOrder::UI)
   end
 
   def draw
