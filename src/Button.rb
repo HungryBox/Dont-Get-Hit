@@ -23,10 +23,10 @@ class Button
   end
 
   def draw
-    @window.draw_quad(@xcenter-@width,@ycenter-@height,Dev::ButtonColor,
-      @xcenter+@width,@ycenter-@height,Dev::ButtonColor,
-      @xcenter-@width,@ycenter+@height,Dev::ButtonColor,
-      @xcenter+@width,@ycenter+@height,Dev::ButtonColor,
+    @window.draw_quad(@xcenter-@width/2,@ycenter-@height/2,Dev::ButtonColor,
+      @xcenter+@width/2,@ycenter-@height/2,Dev::ButtonColor,
+      @xcenter-@width/2,@ycenter+@height/2,Dev::ButtonColor,
+      @xcenter+@width/2,@ycenter+@height/2,Dev::ButtonColor,
       ZOrder::ButtonBacker)
     @image.draw(@xcenter-@width/2, @ycenter-@height/2, @zorder)
   end

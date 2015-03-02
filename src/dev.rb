@@ -20,7 +20,7 @@ module Dev
   FontHeight = 45
   FontSize = 20
   LineSpacing = 0
-  LineWidth = 124
+  LineWidth = 248
   TextAlign = :center
 
   ButtonColor = Color::BLUE
