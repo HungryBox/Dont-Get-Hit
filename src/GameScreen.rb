@@ -77,6 +77,7 @@ class GameScreen
     end
 
     @enemies.delete_if do |enemy|
+      # Add a coin to coin array
       enemy.outofBounds or
       enemy.checkCollide(@playerBullets)
     end
@@ -103,6 +104,7 @@ class GameScreen
     @enemyBullets.each {|bullet| bullet.move}
 
     # Spawn enemies
+    # Load the information from a level file
     if @enemies.size < 5 then
       @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     end
@@ -110,34 +112,4 @@ class GameScreen
     return Hash[game:true]
   end
 end
-
-
-# Death Screen update
-
-# if button_down? Gosu::MsLeft then
-#   if self.mouse_x >= self.width/2.0-@playAgainImage.width/2.0 and
-#     self.mouse_x <= self.width/2.0+@playAgainImage.width/2.0 then
-#     if self.mouse_y >= self.height/2.0+50 - @playAgainImage.height/2.0 and
-#     self.mouse_y <= self.height/2.0+50 + @playAgainImage.height/2.0 then
-#       @replay = true
-
-
-#       @isDeathWindow = false
-#       @isPlayWindow = true
-#     end
-#   end
-#   if self.mouse_x >= self.width/2.0-@exitImage.width/2.0 and
-#     self.mouse_x <= self.width/2.0+@exitImage.width/2.0 then
-#     if self.mouse_y >= self.height/2.0+130 - @exitImage.height/2.0 and
-#     self.mouse_y <= self.height/2.0+130 + @exitImage.height/2.0 then
-#       @isDeathWindow = false
-#       @isTitleWindow = true
-#     end
-#   end
-# end
-
-
-
-
-
 

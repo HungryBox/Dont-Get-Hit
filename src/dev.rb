@@ -9,7 +9,7 @@ module Dev
   PlayerInertiaY = 0.50
   PlayerShotLag = 10 #ms
   PlayerBulletSpeed = -2
-  PlayerHitBox = 5
+  PlayerHitBox = 10
 
   SimpleEnemyVelocity = 1
   SimpleEnemyShotLag = 40 #ms
@@ -22,6 +22,10 @@ module Dev
   LineSpacing = 0
   LineWidth = 248
   TextAlign = :center
+
+  NumberWidth = 50
+  NumberHeight = NumberWidth
+  NumberLineWidth = NumberWidth
 
   ButtonColor = Color::BLUE
 end

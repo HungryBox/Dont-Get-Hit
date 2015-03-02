@@ -9,6 +9,8 @@ class Enemy
 	def initialize(window, x, y)
 		# Establishes sprite for enemy
 		@image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
+
+		@coinImage = Gosu::Image.new(window, "../media/Coin.png", false)
 		# Initializes x,y, downward velocity, and ship angle
 		@x, @y = x, y
 		@vel = Dev::SimpleEnemyVelocity
@@ -69,6 +71,7 @@ class Enemy
 		playerBullets.reject! do |bullet|
 			if Gosu::distance(@x, @y, bullet.x, bullet.y) <= Dev::SimpleEnemyHitBox then
 				true
+				# DROP A COIN
 			else
 				false
 			end

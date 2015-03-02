@@ -28,11 +28,11 @@ class TitleScreen
   def update
     if @window.button_down? Gosu::MsLeft then
       if @playButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[title:false, game:true]
+        return Hash[title:false, level:true]
       elsif @creditButton.isPushed(@window.mouse_x, @window.mouse_y) then
         return Hash[title:false, credit:true]
       end
     end
-    return Hash[title:true, game:false, credit:false]
+    return Hash[title:true]
   end
 end

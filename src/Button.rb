@@ -12,7 +12,6 @@ class Button
     @xcenter = xcenter
     @ycenter = ycenter
     @text = text
-    @font = Dev::FontSize
     @window = window
 
     @image = Gosu::Image.from_text(@window, @text,
