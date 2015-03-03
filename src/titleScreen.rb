@@ -6,7 +6,7 @@ require './Dev'
 class TitleScreen
   def initialize(window)
     @window = window
-    @title = Gosu::Image.from_text(@window, "Dont Get Hit by Armada",
+    @title = Gosu::Image.from_text(@window, "Dont Get Hit by HungryBox",
      Dev::FontName, 50, 50, 500, :center)
     @playButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width/2, @window.height/2-20, "Play", @window,

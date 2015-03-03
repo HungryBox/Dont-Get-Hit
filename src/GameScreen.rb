@@ -4,6 +4,7 @@ require './ZOrder'
 require './SpacePlayer'
 require './Enemy'
 require './Bullet'
+require './Coin'
 
 class GameScreen
   def initialize(window)
@@ -12,6 +13,7 @@ class GameScreen
     @enemies = Array.new
     @playerBullets = Array.new
     @enemyBullets = Array.new
+    @coins = Array.new
 
     @deathImage = Gosu::Image.new(@window, "../media/deathMessage.png", false)
     @playAgainButton = Button.new(Dev::LineWidth, Dev::FontHeight,
@@ -27,6 +29,7 @@ class GameScreen
     @enemies = Array.new
     @playerBullets = Array.new
     @enemyBullets = Array.new
+    @coins = Array.new
   end
 
   def draw
@@ -34,9 +37,10 @@ class GameScreen
       @player.draw
     end
 
-    @enemies.each { |enemy| enemy.draw }
+    @enemies.each {|enemy| enemy.draw }
     @playerBullets.each {|bullet| bullet.draw}
     @enemyBullets.each {|bullet| bullet.draw}
+    @coins.each {|coin| coin.draw}
 
     x_center = @window.width/2
     y_center = @window.height/2
@@ -76,10 +80,14 @@ class GameScreen
       end
     end
 
+    # Delete_if is ending at the first end?
+    # Can't use an if in a delete_if?
     @enemies.delete_if do |enemy|
-      # Add a coin to coin array
-      enemy.outofBounds or
-      enemy.checkCollide(@playerBullets)
+      if enemy.checkCollide(@playerBullets) then
+        coin = Coin.new(@window, enemy.x, enemy.y)
+        @coins.push(coin)
+      end
+      enemy.checkCollide(@playerBullets) #or enemy.outofBounds
     end
 
     @playerBullets.delete_if { |bullet| bullet.outofBounds }
@@ -102,10 +110,11 @@ class GameScreen
 
     @playerBullets.each {|bullet| bullet.move}
     @enemyBullets.each {|bullet| bullet.move}
+    @coins.each {|coin| coin.move}
 
     # Spawn enemies
     # Load the information from a level file
-    if @enemies.size < 5 then
+    if @enemies.size < Dev::EnemyCount then
       @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     end
 

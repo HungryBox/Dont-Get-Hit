@@ -2,10 +2,12 @@ require 'gosu'
 
 require './Dev'
 
+# Implement a new class to setup gun commands
+
 # A class to represent a basic player
 class SpacePlayer
   # Allows other classes to read if the player is kill
-  attr_reader :isKill
+  attr_reader :isKill, :x, :y
 
   # Initializes a player with the window, x, y
   def initialize (window, x, y)
