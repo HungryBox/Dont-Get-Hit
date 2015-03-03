@@ -8,7 +8,7 @@ require './CreditScreen'
 require './GameScreen'
 require './LevelScreen'
 # require './ShopScreen'
-# requrie './OptionScreen'
+require './OptionScreen'
 
 
 # Need option screen
@@ -23,12 +23,13 @@ class DontGetHit < Gosu::Window
     @lastTime = @seconds = 0
 
     @screenState = Hash[title: true, credit: false,
-      game: false, level: false, shop: false]
+      game: false, level: false, shop: false, option: false]
 
     @titleScreen = TitleScreen.new(self)
     @creditScreen = CreditScreen.new(self)
     @gameScreen = GameScreen.new(self)
     @levelScreen = LevelScreen.new(self)
+    @optionScreen = OptionScreen.new(self)
 
     # FUTURE SCREENS
     # @shopScreen = ShopScreen.new(self)
@@ -46,6 +47,8 @@ class DontGetHit < Gosu::Window
     elsif @screenState[:level] then
       @levelScreen.draw
     elsif @screenState[:shop] then
+    elsif @screenState[:option] then
+      @optionScreen.draw
     else
       self.close
     end
@@ -81,6 +84,7 @@ class DontGetHit < Gosu::Window
     elsif @screenState[:level] then
       @screenState = @screenState.merge(@levelScreen.update)
     elsif @screenState[:shop] then
+    elsif @screenState[:option] then
     end
   end
 

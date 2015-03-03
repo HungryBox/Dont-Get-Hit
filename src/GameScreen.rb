@@ -69,6 +69,13 @@ class GameScreen
 
       @player.move
       @player.checkCollide(@enemyBullets)
+      @player.checkCoinCollide(@coins)
+
+      bullet = @player.shoot
+      if bullet.is_a?(Bullet) then
+        @playerBullets.push(bullet)
+      end
+
     else
       if @window.button_down? Gosu::MsLeft then
         if @playAgainButton.isPushed(@window.mouse_x, @window.mouse_y) then
@@ -80,25 +87,26 @@ class GameScreen
       end
     end
 
-    # Delete_if is ending at the first end?
-    # Can't use an if in a delete_if?
+
     @enemies.delete_if do |enemy|
       if enemy.checkCollide(@playerBullets) then
         coin = Coin.new(@window, enemy.x, enemy.y)
         @coins.push(coin)
       end
-      enemy.checkCollide(@playerBullets) #or enemy.outofBounds
     end
+
+    @enemies.delete_if do |enemy|
+      enemy.outofBounds
+    end
+
+    @coins.delete_if do |coin|
+      coin.checkCollide(@player)
+    end
+
 
     @playerBullets.delete_if { |bullet| bullet.outofBounds }
     @enemyBullets.delete_if { |bullet| bullet.outofBounds }
-
-    if !@player.isKill then
-      bullet = @player.shoot
-      if bullet.is_a?(Bullet) then
-        @playerBullets.push(bullet)
-      end
-    end
+    @coins.delete_if { |coin| coin.outofBounds }
 
     @enemies.each do |enemy|
       enemy.move

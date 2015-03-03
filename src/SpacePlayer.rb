@@ -95,10 +95,17 @@ class SpacePlayer
   # within a 5 pixel distance
   def checkCollide(enemyBullets)
     enemyBullets.each do |bullet|
-      if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox
+      if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox then
         @isKill = true
       end
     end
   end
 
+  def checkCoinCollide(coins)
+    coins.each do |coin|
+      if Gosu::distance(coin.x, coin.y, @x, @y) < Dev::PlayerHitBox then
+        @isKill = false
+      end
+    end
+  end
 end

@@ -9,14 +9,14 @@ module Dev
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
   PlayerInertiaY = 0.50
-  PlayerShotLag = 30 #ms
+  PlayerShotLag = 3 #ms
   PlayerBulletSpeed = -4
   PlayerHitBox = 10
 
-  CoinVelocity = 2
+  CoinVelocity = 1
   CoinHitBox = 10
 
-  SimpleEnemyVelocity = 1
+  SimpleEnemyVelocity = 5 #1
   SimpleEnemyShotLag = 100 #ms
   SimpleEnemyAdditionalBulletSpeed = 1
   SimpleEnemyHitBox = 10

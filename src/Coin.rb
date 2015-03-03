@@ -3,6 +3,8 @@ require './ZOrder'
 require './Dev'
 
 class Coin
+  attr_reader :x, :y
+
   def initialize(window, x, y)
     @window = window
     @x, @y = x, y
@@ -24,7 +26,7 @@ class Coin
   end
 
   def draw
-    @image.draw(@x, @y, ZOrder::Coin)
+    @image.draw(@x-@image.width, @y+@image.height, ZOrder::Coin)
   end
 
   def checkCollide(player)
