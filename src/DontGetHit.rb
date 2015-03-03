@@ -30,6 +30,11 @@ class DontGetHit < Gosu::Window
     @creditScreen = CreditScreen.new(self)
     @gameScreen = GameScreen.new(self)
 
+    #@enemyGen = EnemyGen.new(self, "levelOne.txt")
+    # this creates a class to read the file.
+    # enemyGen.genNext will return an Enemy genarated from
+    # the text file given to the object
+
     # FUTURE SCREENS
     # @levelScreen = LevelScreen.new(self)
     # @shopScreen = ShopScreen.new(self)
@@ -83,16 +88,6 @@ class DontGetHit < Gosu::Window
     end
   end
 
-  def genEnimy file
-    gameFile = IO.read("#{file}")
-    s = StringScanner.new(gameFile)
-    eType = s.scan()
-    ex = s.scan(/(\d\d{2}?)/)
-    ey = s.scan(/(\d\d{2}?)/)
-    if(eType == 'E') then
-      Enemy.new(this,ex,ey)
-    end
-  end
 
   def needs_cursor?
     true
