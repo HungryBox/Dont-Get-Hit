@@ -15,15 +15,15 @@ class TitleWindow < Gosu::Window
     # Titles the window
     self.caption = "Don't Get Hit"
     # Sets background image
-    @background_image = Gosu::Image.new(self, "media/Space.png", true)
+    @background_image = Gosu::Image.new(self, "../media/Space.png", true)
     # Creates the game title a placeholder for an image
 # TITLE WINDOW INIT
     @title = Gosu::Image.from_text(self, "Dont Get Hit by Armada",
      Gosu::default_font_name, 50, 50, 500, :center)
     # Sets playbutton image
-    @playImage = Gosu::Image.new(self, "media/PlayButton.png", false)
+    @playImage = Gosu::Image.new(self, "../media/PlayButton.png", false)
     # Sets creditbutton image
-    @creditImage = Gosu::Image.new(self, "media/CreditButton.png", false)
+    @creditImage = Gosu::Image.new(self, "../media/CreditButton.png", false)
 
     # Sets elements to be displayed as titleWindow
     @titleWindow = true
@@ -40,9 +40,9 @@ class TitleWindow < Gosu::Window
 
 
 # DEATH WINDOW INIT
-    @deathImage = Gosu::Image.new(self, "media/deathMessage.png", false)
-    @playAgainImage = Gosu::Image.new(self, "media/playAgainButton.png", false)
-    @exitImage = Gosu::Image.new(self, "media/exitButton.png", false)
+    @deathImage = Gosu::Image.new(self, "../media/deathMessage.png", false)
+    @playAgainImage = Gosu::Image.new(self, "../media/playAgainButton.png", false)
+    @exitImage = Gosu::Image.new(self, "../media/exitButton.png", false)
 
 # CREDITS WINDOW INIT
     @credits = Gosu::Image.from_text(self, "Ian is the best, David, George sux",

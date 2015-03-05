@@ -1,8 +1,0 @@
-10,0,E
-
-
--basic spawn will be: x,y,type
--to give levels use command: W,lengthSeconds
-
-
-(\d)
