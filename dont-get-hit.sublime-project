@@ -6,5 +6,14 @@
 			"path": ".",
       "file_exclude_patterns": ["*.sublime-project","*.sublime-workspace"]
 		}
-	]
+	],
+  "build_systems":
+  [
+    {
+      "name": "DGH",
+      "cmd": ["ruby", "DontGetHit.rb"],
+      "file_regex": "^[ ]*File \"(...*?)\", line ([0-9]*)",
+      "selector": "source.ruby"
+    }
+  ]
 }

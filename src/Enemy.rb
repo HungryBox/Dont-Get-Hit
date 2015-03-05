@@ -5,6 +5,7 @@ require './Bullet'
 
 # Creates a basic enemy that moves down the screen and shoots predictably
 class Enemy
+	attr_reader :x, :y
 	# Initializes an enemy at given x, y with given window
 	def initialize(window, x, y)
 		# Establishes sprite for enemy

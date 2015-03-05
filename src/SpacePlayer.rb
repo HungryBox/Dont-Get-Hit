@@ -2,10 +2,12 @@ require 'gosu'
 
 require './Dev'
 
+# Implement a new class to setup gun commands
+
 # A class to represent a basic player
 class SpacePlayer
   # Allows other classes to read if the player is kill
-  attr_reader :isKill
+  attr_reader :isKill, :x, :y
 
   # Initializes a player with the window, x, y
   def initialize (window, x, y)
@@ -93,10 +95,17 @@ class SpacePlayer
   # within a 5 pixel distance
   def checkCollide(enemyBullets)
     enemyBullets.each do |bullet|
-      if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox
+      if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox then
         @isKill = true
       end
     end
   end
 
+  def checkCoinCollide(coins)
+    coins.each do |coin|
+      if Gosu::distance(coin.x, coin.y, @x, @y) < Dev::PlayerHitBox then
+        @isKill = false
+      end
+    end
+  end
 end

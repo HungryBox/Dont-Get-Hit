@@ -4,7 +4,7 @@ require './Dev'
 
 require './Button'
 
-class CreditScreen
+class OptionScreen
   def initialize(window)
     @window = window
     @credits = Gosu::Image.from_text(@window, "Ty Ian, David, George",

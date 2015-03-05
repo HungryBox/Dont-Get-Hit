@@ -6,10 +6,9 @@ require './Dev'
 require './TitleScreen'
 require './CreditScreen'
 require './GameScreen'
-# require './LevelScreen'
+require './LevelScreen'
 # require './ShopScreen'
-require 'strscan'
-require 'io/console'
+require './OptionScreen'
 
 
 # Need option screen
@@ -24,11 +23,13 @@ class DontGetHit < Gosu::Window
     @lastTime = @seconds = 0
 
     @screenState = Hash[title: true, credit: false,
-      game: false, level: false, shop: false]
+      game: false, level: false, shop: false, option: false]
 
     @titleScreen = TitleScreen.new(self)
     @creditScreen = CreditScreen.new(self)
     @gameScreen = GameScreen.new(self)
+    @levelScreen = LevelScreen.new(self)
+    @optionScreen = OptionScreen.new(self)
 
     #@enemyGen = EnemyGen.new(self, "levelOne.txt")
     # this creates a class to read the file.
@@ -36,7 +37,6 @@ class DontGetHit < Gosu::Window
     # the text file given to the object
 
     # FUTURE SCREENS
-    # @levelScreen = LevelScreen.new(self)
     # @shopScreen = ShopScreen.new(self)
   end
 
@@ -50,7 +50,10 @@ class DontGetHit < Gosu::Window
     elsif @screenState[:game] then
       @gameScreen.draw
     elsif @screenState[:level] then
+      @levelScreen.draw
     elsif @screenState[:shop] then
+    elsif @screenState[:option] then
+      @optionScreen.draw
     else
       self.close
     end
@@ -84,7 +87,9 @@ class DontGetHit < Gosu::Window
     elsif @screenState[:game] then
       @screenState = @screenState.merge(@gameScreen.update)
     elsif @screenState[:level] then
+      @screenState = @screenState.merge(@levelScreen.update)
     elsif @screenState[:shop] then
+    elsif @screenState[:option] then
     end
   end
 

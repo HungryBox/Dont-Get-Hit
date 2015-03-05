@@ -6,12 +6,14 @@ require './Dev'
 class TitleScreen
   def initialize(window)
     @window = window
-    @title = Gosu::Image.from_text(@window, "Dont Get Hit by Armada",
+    @title = Gosu::Image.from_text(@window, "Dont Get Hit by HungryBox",
      Dev::FontName, 50, 50, 500, :center)
-    @playButton = Button.new(200, 100, @window.width/2, @window.height/2-20,
-      "Play", @window, ZOrder::UI)
-    @creditButton = Button.new(200, 100, @window.width/2, @window.height/2+80,
-      "Credits", @window, ZOrder::UI)
+    @playButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      @window.width/2, @window.height/2-20, "Play", @window,
+      ZOrder::UI)
+    @creditButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      @window.width/2, @window.height/2+80, "Credits", @window,
+      ZOrder::UI)
   end
 
   def draw
@@ -26,12 +28,11 @@ class TitleScreen
   def update
     if @window.button_down? Gosu::MsLeft then
       if @playButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[title:false, game:true]
+        return Hash[title:false, level:true]
       elsif @creditButton.isPushed(@window.mouse_x, @window.mouse_y) then
         return Hash[title:false, credit:true]
       end
-    else
-      return Hash[title:true, game:false, credit:false]
     end
+    return Hash[title:true]
   end
 end
