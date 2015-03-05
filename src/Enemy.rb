@@ -18,7 +18,7 @@ class Enemy
 		# Stores window
 		@window = window
 
-		@lastTime = @milliseconds = 0
+		@lastTime = @milliseconds = 1000
 
 		# Defines the distance between shots
 		@SHOT_LAG = Dev::SimpleEnemyShotLag

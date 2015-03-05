@@ -2,16 +2,13 @@ require 'gosu'
 require './ZOrder'
 require './Dev'
 
-
 require './TitleScreen'
 require './CreditScreen'
 require './GameScreen'
 require './LevelScreen'
-# require './ShopScreen'
+require './ShopScreen'
 require './OptionScreen'
 
-
-# Need option screen
 # Screen state object?
 
 class DontGetHit < Gosu::Window
@@ -29,10 +26,8 @@ class DontGetHit < Gosu::Window
     @creditScreen = CreditScreen.new(self)
     @gameScreen = GameScreen.new(self)
     @levelScreen = LevelScreen.new(self)
+    @shopScreen = ShopScreen.new(self)
     @optionScreen = OptionScreen.new(self)
-
-    # FUTURE SCREENS
-    # @shopScreen = ShopScreen.new(self)
   end
 
   def draw
@@ -47,6 +42,7 @@ class DontGetHit < Gosu::Window
     elsif @screenState[:level] then
       @levelScreen.draw
     elsif @screenState[:shop] then
+      @shopScreen.draw
     elsif @screenState[:option] then
       @optionScreen.draw
     else
@@ -84,7 +80,9 @@ class DontGetHit < Gosu::Window
     elsif @screenState[:level] then
       @screenState = @screenState.merge(@levelScreen.update)
     elsif @screenState[:shop] then
+      @screenState = @screenState.merge(@shopScreen.update)
     elsif @screenState[:option] then
+      @screenState = @screenState.merge(@optionScreen.update)
     end
   end
 

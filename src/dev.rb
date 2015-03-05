@@ -2,21 +2,23 @@ require 'gosu'
 require './Color'
 
 module Dev
-  EnemyCount = 5
+  EnemyCount = 10
 
   EscapeLag = 3
+
+  MouseEnabled = true
 
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
   PlayerInertiaY = 0.50
   PlayerShotLag = 3 #ms
-  PlayerBulletSpeed = -4
+  PlayerBulletSpeed = -5
   PlayerHitBox = 10
 
   CoinVelocity = 1
   CoinHitBox = 10
 
-  SimpleEnemyVelocity = 5 #1
+  SimpleEnemyVelocity = 3 #1
   SimpleEnemyShotLag = 100 #ms
   SimpleEnemyAdditionalBulletSpeed = 1
   SimpleEnemyHitBox = 10

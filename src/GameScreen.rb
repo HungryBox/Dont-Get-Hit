@@ -54,20 +54,25 @@ class GameScreen
 
   def update
     if !@player.isKill then
-      if @window.button_down? Gosu::KbLeft then
-        @player.accelLeft
-      end
-      if @window.button_down? Gosu::KbRight then
-        @player.accelRight
-      end
-      if @window.button_down? Gosu::KbUp then
-        @player.accelForward
-      end
-      if @window.button_down? Gosu::KbDown then
-        @player.accelBackward
+      if !Dev::MouseEnabled then
+        if @window.button_down? Gosu::KbLeft then
+          @player.accelLeft
+        end
+        if @window.button_down? Gosu::KbRight then
+          @player.accelRight
+        end
+        if @window.button_down? Gosu::KbUp then
+          @player.accelForward
+        end
+        if @window.button_down? Gosu::KbDown then
+          @player.accelBackward
+        end
+
+        @player.move
+      else
+        @player.warp(@window.mouse_x, @window.mouse_y)
       end
 
-      @player.move
       @player.checkCollide(@enemyBullets)
       @player.checkCoinCollide(@coins)
 

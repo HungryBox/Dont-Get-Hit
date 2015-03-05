@@ -9,10 +9,13 @@ class TitleScreen
     @title = Gosu::Image.from_text(@window, "Dont Get Hit by HungryBox",
      Dev::FontName, 50, 50, 500, :center)
     @playButton = Button.new(Dev::LineWidth, Dev::FontHeight,
-      @window.width/2, @window.height/2-20, "Play", @window,
+      @window.width/2, @window.height/2+10, "Play", @window,
+      ZOrder::UI)
+    @optionButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      @window.width/2, @window.height/2+80, "Option", @window,
       ZOrder::UI)
     @creditButton = Button.new(Dev::LineWidth, Dev::FontHeight,
-      @window.width/2, @window.height/2+80, "Credits", @window,
+      @window.width/2, @window.height/2+150, "Credits", @window,
       ZOrder::UI)
   end
 
@@ -22,6 +25,7 @@ class TitleScreen
      @window.height/4.0-@title.height/2.0, ZOrder::UI)
 
     @playButton.draw
+    @optionButton.draw
     @creditButton.draw
   end
 
@@ -29,6 +33,8 @@ class TitleScreen
     if @window.button_down? Gosu::MsLeft then
       if @playButton.isPushed(@window.mouse_x, @window.mouse_y) then
         return Hash[title:false, level:true]
+      elsif @optionButton.isPushed(@window.mouse_x, @window.mouse_x) then
+        return Hash[title:false, option:true]
       elsif @creditButton.isPushed(@window.mouse_x, @window.mouse_y) then
         return Hash[title:false, credit:true]
       end

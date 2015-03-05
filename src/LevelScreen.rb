@@ -5,6 +5,8 @@ require './Dev'
 require './Button'
 
 # Have a personal function that changes the level information
+# UPDATE BUTTON CLICKING BY CREATING A VARIABLE THAT WILL TELL IF THE MOUSE
+# BUTTON HAS BEEN UP BEFORE REGISTERING THE NEXT CLICK
 
 class LevelScreen
   def initialize(window)
@@ -12,10 +14,13 @@ class LevelScreen
     @levelButtonArray = Array.new
     # Make a header
     # @header = Gosu::Image.new()
+    @backButton = Button.new(Dev::LineWidth, Dev::FontHeight,
+      Dev::LineWidth/2, Dev::FontHeight/2, "Back", @window,
+      ZOrder::UI)
 
     for i in 1..5
       levelButton = LevelButton.new(Dev::NumberWidth, Dev::NumberWidth,
-        @window.width*(i+2)/10, @window.height/2, "#{i}", @window,
+        @window.width*(i+2)/10, @window.height/3, "#{i}", @window,
         ZOrder::UI, i)
       @levelButtonArray.push(levelButton)
     end
@@ -26,6 +31,8 @@ class LevelScreen
   end
 
   def draw
+    @backButton.draw
+
     @shopButton.draw
 
     @levelButtonArray.each do |button|
@@ -35,6 +42,9 @@ class LevelScreen
 
   def update
     if @window.button_down? Gosu::MsLeft then
+      if @backButton.isPushed(@window.mouse_x, @window.mouse_y) then
+        return Hash[title:true, level:false]
+      end
       if @shopButton.isPushed(@window.mouse_x, @window.mouse_y) then
         return Hash[shop:true, level:false]
       end
@@ -43,7 +53,6 @@ class LevelScreen
         if button.isPushed(@window.mouse_x, @window.mouse_y) then
           # LOAD LEVEL CORRESPONDING TO NUM
           # button.num
-
           return Hash[game:true, level: false]
         end
       end
