@@ -4,7 +4,7 @@ require './Color'
 module Dev
   EnemyCount = 10
 
-  EscapeLag = 3
+  EscapeLag = 0
 
   MouseEnabled = true
 

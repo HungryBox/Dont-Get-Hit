@@ -9,8 +9,6 @@ require './LevelScreen'
 require './ShopScreen'
 require './OptionScreen'
 
-# Screen state object?
-
 class DontGetHit < Gosu::Window
   def initialize
     super(800, 600, false)
@@ -19,83 +17,79 @@ class DontGetHit < Gosu::Window
 
     @lastTime = @seconds = 0
 
-    @screenState = Hash[title: true, credit: false,
-      game: false, level: false, shop: false, option: false]
-
     @titleScreen = TitleScreen.new(self)
     @creditScreen = CreditScreen.new(self)
     @gameScreen = GameScreen.new(self)
     @levelScreen = LevelScreen.new(self)
     @shopScreen = ShopScreen.new(self)
     @optionScreen = OptionScreen.new(self)
+
+    @screenState = Hash[title: true, credit: false,
+      game: false, level: false, shop: false, option: false]
+
+    @screenArray = Hash[title: @titleScreen, credit: @creditScreen,
+      game: @gameScreen, level: @levelScreen, shop: @shopScreen,
+      option: @optionScreen]
   end
 
   def draw
     @background_image.draw(0,0, ZOrder::Background)
-
-    if @screenState[:title] then
-      @titleScreen.draw
-    elsif @screenState[:credit] then
-      @creditScreen.draw
-    elsif @screenState[:game] then
-      @gameScreen.draw
-    elsif @screenState[:level] then
-      @levelScreen.draw
-    elsif @screenState[:shop] then
-      @shopScreen.draw
-    elsif @screenState[:option] then
-      @optionScreen.draw
-    else
-      self.close
+    # Draw active element
+    @screenState.each do |screenName, active|
+      if active then
+        @screenArray[screenName].draw
+      end
     end
   end
 
+  def button_down(id)
+    # Do active element
+    @screenState.each do |screenName, active|
+      if active then
+        @screenArray[screenName].button_down(id)
+      end
+    end
 
-
-  def update
-    if button_down? Gosu::KbEscape then
-      if !@screenState[:title] then
-        @screenState.each_value {|value| value = false}
-        @screenState[:title] = true
+    case id
+    when Gosu::KbEscape then
+      if @seconds >= Dev::EscapeLag and @screenState[:title] then
+        self.close
       end
 
-      if @seconds == 1 then
-        if @screenState[:title] then
-          self.close
+      @screenState.each do |key, value|
+        if value then
+          @screenState[key] = false
         end
       end
+      @screenState[:title] = true
+    end
+  end
 
-      if (Gosu::milliseconds - @lastTime)/1000 >= Dev::EscapeLag then
-        @seconds += 1
-        @lastTime = Gosu::milliseconds
+# screen changes happen here
+  def update
+    if (Gosu::milliseconds - @lastTime)/1000 == 1 then
+      @seconds += 1
+      @lastTime = Gosu::milliseconds
+    end
+
+    # Update active screen
+    @screenState.each do |screenName, active|
+      if active then
+        @screenState = @screenState.merge(@screenArray[screenName].update)
       end
     end
-
-    if @screenState[:title] then
-      @screenState = @screenState.merge(@titleScreen.update)
-    elsif @screenState[:credit] then
-      @screenState = @screenState.merge(@creditScreen.update)
-    elsif @screenState[:game] then
-      @screenState = @screenState.merge(@gameScreen.update)
-    elsif @screenState[:level] then
-      @screenState = @screenState.merge(@levelScreen.update)
-    elsif @screenState[:shop] then
-      @screenState = @screenState.merge(@shopScreen.update)
-    elsif @screenState[:option] then
-      @screenState = @screenState.merge(@optionScreen.update)
-    end
   end
 
-  def genEnimy file
-    gameFile = IO.read("#{file}")
-    s = StringScanner.new(gameFile)
-    eType = s.scan()
-    ex = s.scan(/(\d\d{2}?)/)
-    ey = s.scan(/(\d\d{2}?)/)
-    if(eType == 'E') then
-      Enemy.new(this,ex,ey)
-    end
-  end
+  # def genEnimy file
+  #   gameFile = IO.read("#{file}")
+  #   s = StringScanner.new(gameFile)
+  #   eType = s.scan()
+  #   ex = s.scan(/(\d\d{2}?)/)
+  #   ey = s.scan(/(\d\d{2}?)/)
+  #   if(eType == 'E') then
+  #     Enemy.new(this,ex,ey)
+  #   end
+  # end
 
   def needs_cursor?
     true

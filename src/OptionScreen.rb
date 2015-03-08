@@ -10,18 +10,29 @@ class OptionScreen
     @backButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width/2, @window.height/5*4, "Back", @window,
       ZOrder::UI)
+
+    @toTitle = false
   end
 
   def draw
     @backButton.draw
   end
 
-  def update
-    if @window.button_down? Gosu::MsLeft then
+  def button_down(id)
+    case id
+    when Gosu::MsLeft then
       if @backButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[title:true, option:false]
+        @toTitle = true
       end
     end
-    return Hash[option:true]
+  end
+
+  def update
+    if @toTitle then
+      @toTitle = false
+      return Hash[title:true, option:false]
+    else
+      return Hash[option:true]
+    end
   end
 end

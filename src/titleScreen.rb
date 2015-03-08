@@ -17,7 +17,10 @@ class TitleScreen
     @creditButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width/2, @window.height/2+150, "Credits", @window,
       ZOrder::UI)
+
+    @toLevel = @toOption = @toCredit = false
   end
+
 
   def draw
     x_center = @window.width / 2.0
@@ -29,16 +32,33 @@ class TitleScreen
     @creditButton.draw
   end
 
-  def update
-    if @window.button_down? Gosu::MsLeft then
+
+  def button_down(id)
+    case id
+    when Gosu::MsLeft then
       if @playButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[title:false, level:true]
-      elsif @optionButton.isPushed(@window.mouse_x, @window.mouse_x) then
-        return Hash[title:false, option:true]
+        @toLevel = true
+      elsif @optionButton.isPushed(@window.mouse_x, @window.mouse_y) then
+        @toOption = true
       elsif @creditButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[title:false, credit:true]
+        @toCredit = true
       end
     end
-    return Hash[title:true]
+  end
+
+
+  def update
+    if @toLevel then
+      @toLevel = false
+      return Hash[title:false, level:true]
+    elsif @toOption then
+      @toOption = false
+      return Hash[title:false, option:true]
+    elsif @toCredit then
+      @toCredit = false
+      return Hash[title:false, credit:true]
+    else
+      return Hash[title: true]
+    end
   end
 end
