@@ -53,6 +53,8 @@ class LevelScreen
         if button.isPushed(@window.mouse_x, @window.mouse_y) then
           # LOAD LEVEL CORRESPONDING TO NUM
           # button.num
+          # if(button.num == 1)
+          # spawn enimys
           return Hash[game:true, level: false]
         end
       end

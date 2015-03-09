@@ -54,7 +54,7 @@ class DontGetHit < Gosu::Window
 
   def update
     if button_down? Gosu::KbEscape then
-      if !@screenState[:title] then
+     if !@screenState[:title] then
         @screenState.each_value {|value| value = false}
         @screenState[:title] = true
       end
