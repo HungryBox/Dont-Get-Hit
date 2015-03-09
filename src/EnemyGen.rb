@@ -12,7 +12,7 @@ class EnemyGen
 
   end
 
-
+private
   def genNext(line)
     puts "#{line}"
     eType = "pls work"
