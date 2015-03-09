@@ -26,7 +26,7 @@ class Coin
   end
 
   def draw
-    @image.draw(@x-@image.width, @y+@image.height, ZOrder::Coin)
+    @image.draw(@x-@image.width/2, @y-@image.height/2, ZOrder::Coin)
   end
 
   def checkCollide(player)

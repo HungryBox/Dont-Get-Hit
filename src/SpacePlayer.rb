@@ -80,6 +80,8 @@ class SpacePlayer
 
   # Returns a bullet to be shot with velocity of 2 upwards
   def shoot
+    bulletArray = Array.new()
+
     if (Gosu::milliseconds - @lastTime) >= 1 then
       @milliseconds += 1
       @lastTime = Gosu::milliseconds()
@@ -87,8 +89,13 @@ class SpacePlayer
 
     if @milliseconds == @SHOT_LAG then
       @milliseconds = 0
-      return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
+      bulletArray.push(Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true))
+      bulletArray.push(Bullet.new(@window, @x, @y, 1, Dev::PlayerBulletSpeed, true))
+      bulletArray.push(Bullet.new(@window, @x, @y, -1, Dev::PlayerBulletSpeed, true))
+      # return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
     end
+
+    return bulletArray
   end
 
   # Changes isKill to true if any enemyBullets match the ship's current location

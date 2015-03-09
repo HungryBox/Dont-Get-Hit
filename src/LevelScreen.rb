@@ -40,13 +40,13 @@ class LevelScreen
     end
   end
 
-  def update
-    if @window.button_down? Gosu::MsLeft then
+  def button_down(id)
+    case id
+    when Gosu::MsLeft then
       if @backButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[title:true, level:false]
-      end
-      if @shopButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[shop:true, level:false]
+        @toTitle = true
+      elsif @shopButton.isPushed(@window.mouse_x, @window.mouse_y) then
+        @toShop = true
       end
 
       @levelButtonArray.each do |button|
@@ -59,8 +59,21 @@ class LevelScreen
         end
       end
     end
+  end
 
-    return Hash[level:true, title:false, game:false]
+  def update
+    if @toTitle then
+      @toTitle = false
+      return Hash[title:true, level:false]
+    elsif @toShop then
+      @toShop = false
+      return Hash[shop:true, level:false]
+    elsif @toGame then
+      @toGame = false
+      return Hash[game:true, level: false]
+    else
+      return Hash[level:true]
+    end
   end
 end
 

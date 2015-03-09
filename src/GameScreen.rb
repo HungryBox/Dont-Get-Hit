@@ -22,7 +22,8 @@ class GameScreen
     @exitButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width/2, @window.height/4*3, "Exit", @window,
       ZOrder::UI)
-    end
+    @enemyCount = Dev::EnemyCount
+  end
 
   def restart
     @player = SpacePlayer.new(@window, @window.width/2.0, @window.height/2.0)
@@ -30,6 +31,7 @@ class GameScreen
     @playerBullets = Array.new
     @enemyBullets = Array.new
     @coins = Array.new
+    @enemyCount = Dev::EnemyCount
   end
 
   def draw
@@ -52,7 +54,27 @@ class GameScreen
     end
   end
 
+  def button_down(id)
+    if @player.isKill then
+      case id
+      when Gosu::MsLeft then
+        if @playAgainButton.isPushed(@window.mouse_x, @window.mouse_y) then
+          restart
+        end
+        if @exitButton.isPushed(@window.mouse_x, @window.mouse_y) then
+          @toLevel = true
+        end
+      end
+    end
+  end
+
   def update
+    if @toLevel then
+      @toLevel = false
+      restart
+      return Hash[level:true, game:false]
+    end
+
     if !@player.isKill then
       if !Dev::MouseEnabled then
         if @window.button_down? Gosu::KbLeft then
@@ -67,7 +89,6 @@ class GameScreen
         if @window.button_down? Gosu::KbDown then
           @player.accelBackward
         end
-
         @player.move
       else
         @player.warp(@window.mouse_x, @window.mouse_y)
@@ -76,27 +97,21 @@ class GameScreen
       @player.checkCollide(@enemyBullets)
       @player.checkCoinCollide(@coins)
 
-      bullet = @player.shoot
-      if bullet.is_a?(Bullet) then
-        @playerBullets.push(bullet)
-      end
-
-    else
-      if @window.button_down? Gosu::MsLeft then
-        if @playAgainButton.isPushed(@window.mouse_x, @window.mouse_y) then
-          restart
-        end
-        if @exitButton.isPushed(@window.mouse_x, @window.mouse_y) then
-          return Hash[title:true, game:false]
+      bulletArray = @player.shoot
+      if bulletArray.is_a?(Array) then
+        bulletArray.each do |bullet|
+          if bullet.is_a?(Bullet) then
+            @playerBullets.push(bullet)
+          end
         end
       end
     end
-
 
     @enemies.delete_if do |enemy|
       if enemy.checkCollide(@playerBullets) then
         coin = Coin.new(@window, enemy.x, enemy.y)
         @coins.push(coin)
+        @enemyCount -= 1
       end
     end
 
@@ -107,7 +122,6 @@ class GameScreen
     @coins.delete_if do |coin|
       coin.checkCollide(@player)
     end
-
 
     @playerBullets.delete_if { |bullet| bullet.outofBounds }
     @enemyBullets.delete_if { |bullet| bullet.outofBounds }
@@ -127,7 +141,7 @@ class GameScreen
 
     # Spawn enemies
     # Load the information from a level file
-    if @enemies.size < Dev::EnemyCount then
+    if @enemies.size < @enemyCount then
       @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     end
 

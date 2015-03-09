@@ -2,16 +2,16 @@ require 'gosu'
 require './Color'
 
 module Dev
-  EnemyCount = 10
+  EnemyCount = 100
 
-  EscapeLag = 3
+  EscapeLag = 0
 
   MouseEnabled = true
 
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
   PlayerInertiaY = 0.50
-  PlayerShotLag = 3 #ms
+  PlayerShotLag = 30 #ms
   PlayerBulletSpeed = -5
   PlayerHitBox = 10
 

@@ -23,13 +23,22 @@ class ShopScreen
     @backButton.draw
   end
 
-  def update
-    if @window.button_down? Gosu::MsLeft then
+  def button_down(id)
+    case id
+    when Gosu::MsLeft then
       if @backButton.isPushed(@window.mouse_x, @window.mouse_y) then
-        return Hash[level: true, shop:false]
+        @toLevel = true
       end
     end
-    return Hash[shop:true]
+  end
+
+  def update
+    if @toLevel then
+      @toLevel = false
+      return Hash[level: true, shop:false]
+    else
+      return Hash[shop:true]
+    end
   end
 end
 
