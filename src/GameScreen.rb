@@ -55,19 +55,6 @@ class GameScreen
   end
 
   def button_down(id)
-    if !Dev::MouseEnabled then
-      case id
-      when Gosu::KbLeft then
-        @player.accelLeft
-      when Gosu::KbRight then
-        @player.accelRight
-      when Gosu::KbUp then
-        @player.accelForward
-      when Gosu::KbDown then
-        @player.accelBackward
-      end
-    end
-
     if @player.isKill then
       case id
       when Gosu::MsLeft then
@@ -90,6 +77,18 @@ class GameScreen
 
     if !@player.isKill then
       if !Dev::MouseEnabled then
+        if @window.button_down? Gosu::KbLeft then
+          @player.accelLeft
+        end
+        if @window.button_down? Gosu::KbRight then
+          @player.accelRight
+        end
+        if @window.button_down? Gosu::KbUp then
+          @player.accelForward
+        end
+        if @window.button_down? Gosu::KbDown then
+          @player.accelBackward
+        end
         @player.move
       else
         @player.warp(@window.mouse_x, @window.mouse_y)
@@ -98,9 +97,13 @@ class GameScreen
       @player.checkCollide(@enemyBullets)
       @player.checkCoinCollide(@coins)
 
-      bullet = @player.shoot
-      if bullet.is_a?(Bullet) then
-        @playerBullets.push(bullet)
+      bulletArray = @player.shoot
+      if bulletArray.is_a?(Array) then
+        bulletArray.each do |bullet|
+          if bullet.is_a?(Bullet) then
+            @playerBullets.push(bullet)
+          end
+        end
       end
     end
 
