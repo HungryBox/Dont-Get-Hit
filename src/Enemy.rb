@@ -5,13 +5,13 @@ require './Bullet'
 
 # Creates a basic enemy that moves down the screen and shoots predictably
 class Enemy
-	attr_reader :x, :y
+	attr_reader :x, :y, :time
 	# Initializes an enemy at given x, y with given window
-	def initialize(window, x, y)
+	def initialize(window, x, y, time)
 		# Establishes sprite for enemy
 		@image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
 		# Initializes x,y, downward velocity, and ship angle
-		@x, @y = x, y
+		@x, @y, @time = x, y, time
 		@vel = Dev::SimpleEnemyVelocity
 		@angle = 180
 

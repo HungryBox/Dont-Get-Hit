@@ -1,5 +1,7 @@
 require 'gosu'
 
+require './Enemy'
+
 class EnemyGen
 
   attr_reader :enemies
@@ -10,12 +12,10 @@ class EnemyGen
     fileName = "../Level/"+fileName
     @gameFile = IO.read(fileName)
     @gameFile.each_line("\n"){|line| genNext(line)}
-
   end
 
 private
   def genNext(line)
-    puts "#{line}"
     eType = "pls work"
     eT = 0
     eX = 0
@@ -23,7 +23,6 @@ private
     exDone = false
     eyDone = false
     gameArray = line.split(",")
-    puts gameArray
     gameArray.each do |pos|
       if pos == "E" then
         eType = pos
@@ -48,12 +47,7 @@ private
       eT = pos
       #bputs pos
     end
-      @enemies.push(Enemy.new(@window, ex, ey))
-      puts "#{eType},#{eX},#{eY},#{eT}"
-      #puts "\n"
+      @enemies.push(Enemy.new(@window, eX, eY))
+      # puts "#{eType},#{eX},#{eY},#{eT}"
   end
-
 end
-
-# window = Gosu::Window.new(800,600,false)
-# enemyGen = EnemyGen.new(window,"levelTwo.txt")

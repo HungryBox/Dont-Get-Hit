@@ -63,9 +63,9 @@ class LevelScreen
           # Level1.txt
           case button.num
           when 1
-            @levelFilePath = "../Level/levelOne.txt"
+            @levelFilePath = "levelOne.txt"
           when 2
-            @levelFilePath = "../Level/levelTwo.txt"
+            @levelFilePath = "levelTwo.txt"
           end
 
 
@@ -88,7 +88,7 @@ class LevelScreen
       return Hash[shop:true, level:false]
     elsif @toGame then
       @toGame = false
-      return Hash[game:true, level: false], @enemyArray
+      return Hash[game:true, level: false], @levelFilePath
     else
       return Hash[level:true]
     end

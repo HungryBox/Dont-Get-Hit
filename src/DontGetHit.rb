@@ -82,8 +82,12 @@ class DontGetHit < Gosu::Window
     @screenState.each do |screenName, active|
       if active then
         if screenName == :level and @screenArray[:level].toGame
-          @screenState, levelFP = @screenState.merge(@screenArray[screenName].update[0]), @screenArray[screenName].update[1]
-          @screenArray[:game].levelFilePath = levelFP
+          hash, filePath = @screenArray[screenName].update
+
+          @screenState = @screenState.merge(hash)
+
+          @screenArray[:game].levelFilePath = filePath
+          @screenArray[:game].newGame = true
         else
           @screenState = @screenState.merge(@screenArray[screenName].update)
         end
