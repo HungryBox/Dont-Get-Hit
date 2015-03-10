@@ -55,7 +55,7 @@ class LevelScreen
           # button.num
           # if(button.num == 1)
           # spawn enimys
-          return Hash[game:true, level: false]
+          @toGame = true
         end
       end
     end
