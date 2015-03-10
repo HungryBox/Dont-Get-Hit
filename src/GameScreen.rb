@@ -141,11 +141,27 @@ class GameScreen
 
     # Spawn enemies
     # Load the information from a level file
-    if @enemies.size < @enemyCount then
-      @enemies.push(Enemy.new(@window, rand(@window.width), 0))
+    # if @enemies.size < @enemyCount then
+    #   @enemies.push(Enemy.new(@window, rand(@window.width), 0))
+    # end
+    puts " i got here "
+    @enemyGen = EnemyGen.new(@window, "#{@levelName}")
+    puts "148"
+    @enemyGen.attr:enemies.each do |curE|
+      puts "i work"
+      puts @enemyGen.attr:enemies[curE]
+      @enemies[curE] = @enemyGen.attr:enemies[curE]
     end
+
+
 
     return Hash[game:true]
   end
+
+  def setLevel(levelName)
+    @levelName = levelName
+  end
+
+
 end
 
