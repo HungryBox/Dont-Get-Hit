@@ -144,11 +144,12 @@ class GameScreen
     # if @enemies.size < @enemyCount then
     #   @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     # end
+    puts " i got here "
     @enemyGen = EnemyGen.new(@window, "#{@levelName}")
-
-
-
+    puts "148"
     @enemyGen.attr:enemies.each do |curE|
+      puts "i work"
+      puts @enemyGen.attr:enemies[curE]
       @enemies[curE] = @enemyGen.attr:enemies[curE]
     end
 
