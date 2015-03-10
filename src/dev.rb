@@ -18,7 +18,7 @@ module Dev
   CoinVelocity = 1
   CoinHitBox = 10
 
-  SimpleEnemyVelocity = 3 #1
+  SimpleEnemyVelocity = 1 #1
   SimpleEnemyShotLag = 100 #ms
   SimpleEnemyAdditionalBulletSpeed = 1
   SimpleEnemyHitBox = 10
