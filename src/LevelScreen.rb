@@ -40,6 +40,10 @@ class LevelScreen
     end
   end
 
+  def levelFilePath
+    return @levelFilePath
+  end
+
   def button_down(id)
     case id
     when Gosu::MsLeft then
@@ -51,6 +55,16 @@ class LevelScreen
 
       @levelButtonArray.each do |button|
         if button.isPushed(@window.mouse_x, @window.mouse_y) then
+          # "Level#{button.num}.txt"
+          # Level1.txt
+          case button.num
+          when 1
+            @levelFilePath = "../Level/levelOne.txt"
+          when 2
+            @levelFilePath = "../Level/levelTwo.txt"
+          end
+
+
           # LOAD LEVEL CORRESPONDING TO NUM
           # button.num
           # if(button.num == 1)

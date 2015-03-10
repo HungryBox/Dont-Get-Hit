@@ -2,7 +2,7 @@ require 'gosu'
 require './Color'
 
 module Dev
-  EnemyCount = 100
+  EnemyCount = 50
 
   EscapeLag = 0
 

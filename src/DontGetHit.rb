@@ -9,6 +9,8 @@ require './LevelScreen'
 require './ShopScreen'
 require './OptionScreen'
 
+# Option Screen
+
 class DontGetHit < Gosu::Window
   def initialize
     super(800, 600, false)
