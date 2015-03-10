@@ -5,8 +5,11 @@ require './SpacePlayer'
 require './Enemy'
 require './Bullet'
 require './Coin'
+require './EnemyGen'
 
 class GameScreen
+  attr_writer :levelFilePath
+
   def initialize(window)
     @window = window
     @player = SpacePlayer.new(@window, @window.width/2.0, @window.height/2.0)
@@ -25,12 +28,16 @@ class GameScreen
     @enemyCount = Dev::EnemyCount
   end
 
-  def restart
+  def levelStart
     @player = SpacePlayer.new(@window, @window.width/2.0, @window.height/2.0)
     @enemies = Array.new
     @playerBullets = Array.new
     @enemyBullets = Array.new
     @coins = Array.new
+
+    # Enemy Generation
+    @enemies = EnemyGen.new(@window, @levelFilePath).enemies
+
     @enemyCount = Dev::EnemyCount
   end
 
@@ -59,7 +66,7 @@ class GameScreen
       case id
       when Gosu::MsLeft then
         if @playAgainButton.isPushed(@window.mouse_x, @window.mouse_y) then
-          restart
+          levelStart
         end
         if @exitButton.isPushed(@window.mouse_x, @window.mouse_y) then
           @toLevel = true
@@ -71,7 +78,7 @@ class GameScreen
   def update
     if @toLevel then
       @toLevel = false
-      restart
+      levelStart
       return Hash[level:true, game:false]
     end
 
@@ -144,14 +151,15 @@ class GameScreen
     # if @enemies.size < @enemyCount then
     #   @enemies.push(Enemy.new(@window, rand(@window.width), 0))
     # end
-    puts " i got here "
-    @enemyGen = EnemyGen.new(@window, "#{@levelName}")
-    puts "148"
-    @enemyGen.attr:enemies.each do |curE|
-      puts "i work"
-      puts @enemyGen.attr:enemies[curE]
-      @enemies[curE] = @enemyGen.attr:enemies[curE]
-    end
+
+    # puts " i got here "
+    # @enemyGen = EnemyGen.new(@window, "#{@levelName}")
+    # puts "148"
+    # @enemyGen.attr:enemies.each do |curE|
+    #   puts "i work"
+    #   puts @enemyGen.attr:enemies[curE]
+    #   @enemies[curE] = @enemyGen.attr:enemies[curE]
+    # end
 
 
 

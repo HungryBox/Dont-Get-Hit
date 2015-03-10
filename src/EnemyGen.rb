@@ -7,7 +7,8 @@ class EnemyGen
   def initialize(window, fileName)
     @window = window
     @enemies = Array.new
-    @gameFile = IO.read("#{fileName}")
+    fileName = "../Level/"+fileName
+    @gameFile = IO.read(fileName)
     @gameFile.each_line("\n"){|line| genNext(line)}
 
   end

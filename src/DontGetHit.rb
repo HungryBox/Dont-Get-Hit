@@ -19,6 +19,8 @@ class DontGetHit < Gosu::Window
 
     @lastTime = @seconds = 0
 
+    @enemyArray = Array.new()
+
     @titleScreen = TitleScreen.new(self)
     @creditScreen = CreditScreen.new(self)
     @gameScreen = GameScreen.new(self)
@@ -79,7 +81,12 @@ class DontGetHit < Gosu::Window
     # Update active screen
     @screenState.each do |screenName, active|
       if active then
-        @screenState = @screenState.merge(@screenArray[screenName].update)
+        if screenName == :level and @screenArray[:level].toGame
+          @screenState, levelFP = @screenState.merge(@screenArray[screenName].update[0]), @screenArray[screenName].update[1]
+          @screenArray[:game].levelFilePath = levelFP
+        else
+          @screenState = @screenState.merge(@screenArray[screenName].update)
+        end
       end
     end
   end

@@ -9,6 +9,8 @@ require './Button'
 # BUTTON HAS BEEN UP BEFORE REGISTERING THE NEXT CLICK
 
 class LevelScreen
+  attr_reader :toGame
+
   def initialize(window)
     @window = window
     @levelButtonArray = Array.new
@@ -28,6 +30,8 @@ class LevelScreen
     @shopButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width-Dev::LineWidth/2, Dev::FontHeight/2, "Shop", @window,
       ZOrder::UI)
+
+    @toTitle = @toShop = @toGame = false
   end
 
   def draw
@@ -84,7 +88,7 @@ class LevelScreen
       return Hash[shop:true, level:false]
     elsif @toGame then
       @toGame = false
-      return Hash[game:true, level: false]
+      return Hash[game:true, level: false], @enemyArray
     else
       return Hash[level:true]
     end
