@@ -47,6 +47,7 @@ private
       eT = pos
       #bputs pos
     end
+
       @enemies.push(Enemy.new(@window, eX, eY, eT))
   end
 end
