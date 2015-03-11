@@ -57,8 +57,6 @@ class GameScreen
     # Enemy Generation
     @stagedEnemies = EnemyGen.new(@window, @levelFilePath).enemies
 
-    @enemyCount = Dev::EnemyCount
-
     @startTime = Gosu::milliseconds
     @time = 0
     @money = 0
@@ -169,7 +167,7 @@ class GameScreen
     @stagedEnemies.each do |enemy|
       if enemy.spawnTime.to_i <= @time then
         @activeEnemies.push(enemy)
-        @stagedEnemies.shift
+        @stagedEnemies.delete(enemy)
       end
     end
 
@@ -177,7 +175,6 @@ class GameScreen
       if enemy.checkCollide(@playerBullets) then
         coin = Coin.new(@window, enemy.x, enemy.y)
         @coins.push(coin)
-        @enemyCount -= 1
       end
     end
 

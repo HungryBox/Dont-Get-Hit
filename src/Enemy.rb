@@ -12,7 +12,8 @@ class Enemy
 		@image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
 		# Initializes x,y, downward velocity, and ship angle
 		@x, @y, @spawnTime = x, y, spawnTime
-		@vel = Dev::SimpleEnemyVelocity
+		@velx = 0
+		@vely = Dev::SimpleEnemyVelocity
 		@angle = 180
 
 		# Stores window
@@ -33,8 +34,8 @@ class Enemy
 	# Use this command in conjunction with warp and change the angle
 	# to create weird flight paths like a sine wave
 	def move
-		@x += 0
-		@y += @vel
+		@x += @velx
+		@y += @vely
 	end
 
 	# Returns a boolean if the ship is out of the window bounds
@@ -59,7 +60,7 @@ class Enemy
 
 		if @milliseconds >= @SHOT_LAG then
 			@milliseconds = 0
-			return Bullet.new(@window, @x, @y, 0, @vel+Dev::SimpleEnemyAdditionalBulletSpeed, false)
+			return Bullet.new(@window, @x, @y, 0, @vely+Dev::SimpleEnemyAdditionalBulletSpeed, false)
 		end
 	end
 

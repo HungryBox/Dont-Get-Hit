@@ -38,6 +38,7 @@ class DontGetHit < Gosu::Window
     @money = 0
   end
 
+
   def draw
     @background_image.draw(0,0, ZOrder::Background)
     # Draw active element
@@ -47,7 +48,6 @@ class DontGetHit < Gosu::Window
       end
     end
   end
-
 
 
   def button_down(id)
@@ -104,17 +104,6 @@ class DontGetHit < Gosu::Window
       end
     end
   end
-
-  # def genEnimy file
-  #   gameFile = IO.read("#{file}")
-  #   s = StringScanner.new(gameFile)
-  #   eType = s.scan()
-  #   ex = s.scan(/(\d\d{2}?)/)
-  #   ey = s.scan(/(\d\d{2}?)/)
-  #   if(eType == 'E') then
-  #     Enemy.new(this,ex,ey)
-  #   end
-  # end
 
   def needs_cursor?
     true
