@@ -3,8 +3,9 @@ require './ZOrder'
 require './Dev'
 
 require './Button'
-
 class ShopScreen
+  attr_accessor :money
+
   def initialize(window)
     @window = window
     @backButton = Button.new(Dev::LineWidth, Dev::FontHeight,
@@ -14,6 +15,8 @@ class ShopScreen
     # Put in vanity box
     # Put in mods box
 
+    @moneyLabel = Gosu::Font.new(@window, Dev::FontName, Dev::FontHeight)
+
     @scrollBox = ScrollBox.new(Dev::LineWidth, Dev::FontHeight,
       Dev::LineWidth/2, Dev::FontHeight/2, "Back", @window,
       ZOrder::UI)
@@ -21,6 +24,8 @@ class ShopScreen
 
   def draw
     @backButton.draw
+
+    @moneyLabel.draw("Money: #{@money}", 500, 10, ZOrder::UI, 1.0, 1.0, Color::WHITE)
   end
 
   def button_down(id)

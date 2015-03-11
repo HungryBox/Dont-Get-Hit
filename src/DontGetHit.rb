@@ -93,6 +93,8 @@ class DontGetHit < Gosu::Window
         elsif screenName == :game and @screenArray[:game].isWon then
           @money += @screenArray[:game].money
           @screenState = @screenState.merge(@screenArray[screenName].update)
+        elsif screenName == :shop
+          @screenArray[:shop].money = @money
         else
           @screenState = @screenState.merge(@screenArray[screenName].update)
         end
