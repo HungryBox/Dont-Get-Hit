@@ -32,6 +32,9 @@ class GameScreen
     @enemyCount = Dev::EnemyCount
 
     @newGame = true
+
+    @startTime = 0
+    @time = 0
   end
 
   def levelStart
@@ -44,6 +47,9 @@ class GameScreen
     @stagedEnemies = EnemyGen.new(@window, @levelFilePath).enemies
 
     @enemyCount = Dev::EnemyCount
+
+    @startTime = Gosu::milliseconds
+    @time = 0
   end
 
   def draw
@@ -81,6 +87,8 @@ class GameScreen
   end
 
   def update
+    @time = Gosu::milliseconds - @startTime
+
     if @toLevel then
       @toLevel = false
       @newGame = true
@@ -128,6 +136,12 @@ class GameScreen
     # started from levelstart
     # if timer time is greater than or equal to enemy time
     # then push that enemy to activeenemy array and delete from staged enemy
+    @stagedEnemies.each do |enemy|
+      if enemy.spawnTime.to_i <= @time then
+        @activeEnemies.push(enemy)
+        @stagedEnemies.shift
+      end
+    end
 
     @activeEnemies.delete_if do |enemy|
       if enemy.checkCollide(@playerBullets) then
@@ -160,24 +174,6 @@ class GameScreen
     @playerBullets.each {|bullet| bullet.move}
     @enemyBullets.each {|bullet| bullet.move}
     @coins.each {|coin| coin.move}
-
-    # Spawn activeEnemies
-    # Load the information from a level file
-    # if @activeEnemies.size < @enemyCount then
-    #   @activeEnemies.push(Enemy.new(@window, rand(@window.width), 0))
-    # end
-
-    # puts " i got here "
-    # @enemyGen = EnemyGen.new(@window, "#{@levelName}")
-    # puts "148"
-    # @enemyGen.attr:activeEnemies.each do |curE|
-    #   puts "i work"
-    #   puts @enemyGen.attr:activeEnemies[curE]
-    #   @activeEnemies[curE] = @enemyGen.attr:activeEnemies[curE]
-    # end
-
-
-
     return Hash[game:true]
   end
 
