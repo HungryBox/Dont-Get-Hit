@@ -41,7 +41,7 @@ class GameScreen
     @enemyBullets = Array.new
     @coins = Array.new
     # Enemy Generation
-    @stagedEnemies = EnemyGen.new(@window, @levelFilePath).activeEnemies
+    @stagedEnemies = EnemyGen.new(@window, @levelFilePath).enemies
 
     @enemyCount = Dev::EnemyCount
   end
