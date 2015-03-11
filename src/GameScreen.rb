@@ -118,7 +118,7 @@ class GameScreen
       @newGame = false
     end
 
-    if @stagedEnemies.empty? and @activeEnemies.empty? then
+    if @stagedEnemies.empty? and @activeEnemies.empty? and !@player.isKill then
       @finishStartTime = Gosu::milliseconds
       if !@isWon then
         @finishEndTime = @finishStartTime + Dev::FinishDuration

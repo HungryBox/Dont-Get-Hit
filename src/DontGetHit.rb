@@ -91,10 +91,13 @@ class DontGetHit < Gosu::Window
           @screenArray[:game].levelFilePath = filePath
           @screenArray[:game].newGame = true
         elsif screenName == :game and @screenArray[:game].isWon then
-          @money += @screenArray[:game].money
           @screenState = @screenState.merge(@screenArray[screenName].update)
+          if !@screenState[:game] then
+            @money += @screenArray[:game].money
+          end
         elsif screenName == :shop
           @screenArray[:shop].money = @money
+          @screenState = @screenState.merge(@screenArray[screenName].update)
         else
           @screenState = @screenState.merge(@screenArray[screenName].update)
         end
