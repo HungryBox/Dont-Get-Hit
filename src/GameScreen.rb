@@ -1,5 +1,6 @@
 require 'gosu'
 require './ZOrder'
+require './Color'
 
 require './SpacePlayer'
 require './Enemy'
@@ -9,6 +10,9 @@ require './EnemyGen'
 
 class GameScreen
   attr_reader :stagedEnemies
+  attr_reader :money
+  attr_reader :isWon
+
   attr_writer :levelFilePath
   attr_writer :newGame
 
@@ -29,12 +33,19 @@ class GameScreen
     @exitButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width/2, @window.height/4*3, "Exit", @window,
       ZOrder::UI)
+
+    @moneyLabel = Gosu::Font.new(@window, Dev::FontName, Dev::FontHeight)
+
     @enemyCount = Dev::EnemyCount
 
     @newGame = true
 
-    @startTime = 0
-    @time = 0
+    @isWon = false
+
+    @startTime = @time = 0
+    @money = 0
+
+    @finishStartTime = @finishEndTime = 0
   end
 
   def levelStart
@@ -50,12 +61,19 @@ class GameScreen
 
     @startTime = Gosu::milliseconds
     @time = 0
+    @money = 0
+
+    @finishStartTime = @finishEndTime = 0
+
+    @isWon = false
   end
 
   def draw
     if !@player.isKill then
       @player.draw
     end
+
+    @moneyLabel.draw("Money: #{@money}", 10, 10, ZOrder::UI, 1.0, 1.0, Color::WHITE)
 
     @activeEnemies.each {|enemy| enemy.draw }
     @playerBullets.each {|bullet| bullet.draw}
@@ -98,6 +116,18 @@ class GameScreen
     if @newGame == true then
       levelStart
       @newGame = false
+    end
+
+    if @stagedEnemies.empty? and @activeEnemies.empty? then
+      @finishStartTime = Gosu::milliseconds
+      if !@isWon then
+        @finishEndTime = @finishStartTime + Dev::FinishDuration
+        @isWon = true
+      end
+
+      if @finishStartTime >= @finishEndTime then
+        return Hash[level:true, game:false]
+      end
     end
 
     if !@player.isKill then
@@ -156,7 +186,9 @@ class GameScreen
     end
 
     @coins.delete_if do |coin|
-      coin.checkCollide(@player)
+      if coin.checkCollide(@player) then
+        @money += Dev::CoinValue
+      end
     end
 
     @playerBullets.delete_if { |bullet| bullet.outofBounds }

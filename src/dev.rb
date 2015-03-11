@@ -8,6 +8,8 @@ module Dev
 
   MouseEnabled = true
 
+  FinishDuration = 3000 #ms
+
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
   PlayerInertiaY = 0.50
@@ -17,6 +19,7 @@ module Dev
 
   CoinVelocity = 1
   CoinHitBox = 10
+  CoinValue = 10
 
   SimpleEnemyVelocity = 1 #1
   SimpleEnemyShotLag = 100 #ms

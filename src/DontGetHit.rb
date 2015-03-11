@@ -34,6 +34,8 @@ class DontGetHit < Gosu::Window
     @screenArray = Hash[title: @titleScreen, credit: @creditScreen,
       game: @gameScreen, level: @levelScreen, shop: @shopScreen,
       option: @optionScreen]
+
+    @money = 0
   end
 
   def draw
@@ -81,13 +83,16 @@ class DontGetHit < Gosu::Window
     # Update active screen
     @screenState.each do |screenName, active|
       if active then
-        if screenName == :level and @screenArray[:level].toGame
+        if screenName == :level and @screenArray[:level].toGame then
           hash, filePath = @screenArray[screenName].update
 
           @screenState = @screenState.merge(hash)
 
           @screenArray[:game].levelFilePath = filePath
           @screenArray[:game].newGame = true
+        elsif screenName == :game and @screenArray[:game].isWon then
+          @money += @screenArray[:game].money
+          @screenState = @screenState.merge(@screenArray[screenName].update)
         else
           @screenState = @screenState.merge(@screenArray[screenName].update)
         end
