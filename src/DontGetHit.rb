@@ -28,8 +28,8 @@ class DontGetHit < Gosu::Window
     @shopScreen = ShopScreen.new(self)
     @optionScreen = OptionScreen.new(self)
 
-    @screenState = Hash[title: true, credit: false,
-      game: false, level: false, shop: false, option: false]
+    @screenState = Hash[title: false, credit: false,
+      game: false, level: true, shop: false, option: false]
 
     @screenArray = Hash[title: @titleScreen, credit: @creditScreen,
       game: @gameScreen, level: @levelScreen, shop: @shopScreen,
@@ -114,7 +114,7 @@ class DontGetHit < Gosu::Window
   end
 
   def needs_cursor?
-    true
+    !(@screenState[:game] and @screenArray[:game].isAlive)
   end
 end
 

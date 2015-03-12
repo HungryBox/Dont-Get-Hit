@@ -12,6 +12,7 @@ class GameScreen
   attr_reader :stagedEnemies
   attr_reader :money
   attr_reader :isWon
+  attr_reader :isAlive
 
   attr_writer :levelFilePath
   attr_writer :newGame
@@ -41,6 +42,8 @@ class GameScreen
     @newGame = true
 
     @isWon = false
+
+    @isAlive = true
 
     @startTime = @time = 0
     @money = 0
@@ -103,6 +106,8 @@ class GameScreen
   end
 
   def update
+    @isAlive = !@player.isKill
+
     @time = Gosu::milliseconds - @startTime
 
     if @toLevel then

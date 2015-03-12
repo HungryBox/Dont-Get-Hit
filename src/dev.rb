@@ -8,7 +8,7 @@ module Dev
 
   MouseEnabled = true
 
-  FinishDuration = 30 #ms
+  FinishDuration = 3000 #ms
 
   PlayerVelocity = 3
   PlayerInertiaX = 0.50

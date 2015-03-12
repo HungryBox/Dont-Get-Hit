@@ -31,7 +31,7 @@ class SideWinderEnemy < Enemy
 
     if @milliseconds >= @SHOT_LAG then
       @milliseconds = 0
-      return Bullet.new(@window, @x, @y, 0, @vely+Dev::SimpleEnemyAdditionalBulletSpeed, false)
+      return Bullet.new(@window, @x, @y, @velx+Dev::SimpleEnemyAdditionalBulletSpeed, @vely+Dev::SimpleEnemyAdditionalBulletSpeed, false)
     end
   end
 end
