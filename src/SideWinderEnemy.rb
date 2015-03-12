@@ -5,7 +5,12 @@ class SideWinderEnemy < Enemy
     @image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
     # Initializes x,y, downward velocity, and ship angle
     @x, @y, @spawnTime = x, y, spawnTime
-    @velx = Dev::SimpleEnemyVelocity
+
+    if @x == 0 then
+      @velx = Dev::SimpleEnemyVelocity
+    else
+      @velx = -Dev::SimpleEnemyVelocity
+    end
     @vely = 0
     @angle = 90
 

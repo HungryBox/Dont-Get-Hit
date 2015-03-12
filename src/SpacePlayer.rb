@@ -92,7 +92,8 @@ class SpacePlayer
       bulletArray.push(Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true))
       bulletArray.push(Bullet.new(@window, @x, @y, 1, Dev::PlayerBulletSpeed, true))
       bulletArray.push(Bullet.new(@window, @x, @y, -1, Dev::PlayerBulletSpeed, true))
-      # return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
+      bulletArray.push(Bullet.new(@window, @x+10, @y, 0, Dev::PlayerBulletSpeed, true))
+      bulletArray.push(Bullet.new(@window, @x-10, @y, 0, Dev::PlayerBulletSpeed, true))
     end
 
     return bulletArray

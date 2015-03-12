@@ -6,14 +6,14 @@ module Dev
 
   EscapeLag = 0
 
-  MouseEnabled = false
+  MouseEnabled = true
 
-  FinishDuration = 3000 #ms
+  FinishDuration = 30 #ms
 
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
   PlayerInertiaY = 0.50
-  PlayerShotLag = 30 #ms
+  PlayerShotLag =  30*10 #ms
   PlayerBulletSpeed = -5
   PlayerHitBox = 10
 

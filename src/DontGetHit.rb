@@ -28,14 +28,14 @@ class DontGetHit < Gosu::Window
     @shopScreen = ShopScreen.new(self)
     @optionScreen = OptionScreen.new(self)
 
-    @screenState = Hash[title: true, credit: false,
-      game: false, level: false, shop: false, option: false]
+    @screenState = Hash[title: false, credit: false,
+      game: false, level: false, shop: true, option: false]
 
     @screenArray = Hash[title: @titleScreen, credit: @creditScreen,
       game: @gameScreen, level: @levelScreen, shop: @shopScreen,
       option: @optionScreen]
 
-    @money = 0
+    @money = 100
   end
 
 
@@ -83,21 +83,29 @@ class DontGetHit < Gosu::Window
     # Update active screen
     @screenState.each do |screenName, active|
       if active then
-        if screenName == :level and @screenArray[:level].toGame then
-          hash, filePath = @screenArray[screenName].update
+        if screenName == :level then
+          if @screenArray[:level].toGame then
+            hash, filePath = @screenArray[screenName].update
 
-          @screenState = @screenState.merge(hash)
+            @screenState = @screenState.merge(hash)
 
-          @screenArray[:game].levelFilePath = filePath
-          @screenArray[:game].newGame = true
+            @screenArray[:game].levelFilePath = filePath
+            @screenArray[:game].newGame = true
+          elsif @screenArray[:level].toShop then
+            @screenArray[:shop].money = @money
+            @screenState = @screenState.merge(@screenArray[screenName].update)
+
+          end
         elsif screenName == :game and @screenArray[:game].isWon then
           @screenState = @screenState.merge(@screenArray[screenName].update)
           if !@screenState[:game] then
             @money += @screenArray[:game].money
           end
+
         elsif screenName == :shop
-          @screenArray[:shop].money = @money
+          @money = @screenArray[:shop].money
           @screenState = @screenState.merge(@screenArray[screenName].update)
+
         else
           @screenState = @screenState.merge(@screenArray[screenName].update)
         end

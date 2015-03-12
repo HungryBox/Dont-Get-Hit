@@ -9,7 +9,7 @@ require './Button'
 # BUTTON HAS BEEN UP BEFORE REGISTERING THE NEXT CLICK
 
 class LevelScreen
-  attr_reader :toGame
+  attr_reader :toGame, :toShop
 
   def initialize(window)
     @window = window
@@ -66,6 +66,10 @@ class LevelScreen
             @levelFilePath = "levelOne.txt"
           when 2
             @levelFilePath = "levelTwo.txt"
+          when 3
+            @levelFilePath = "levelThree.txt"
+          else
+            @levelFilePath = "levelOne.txt"
           end
 
 
