@@ -17,6 +17,15 @@ class PrimeWeapon
         bullets.push(Bullet.new(@window,x,y,-1,Dev::PlayerBulletSpeed,@isPlayer))
         bullets.push(Bullet.new(@window,x,y,0,Dev::PlayerBulletSpeed,@isPlayer))
         bullets.push(Bullet.new(@window,x,y,1,Dev::PlayerBulletSpeed,@isPlayer))
+      when "star"
+        bullets.push(Bullet.new(@window,x,y,0,Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-1,Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-1,0))
+        bullets.push(Bullet.new(@window,x,y,-1,-Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,0,-Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,1,-Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,1,0))
+        bullets.push(Bullet.new(@window,x,y,1,Dev::PlayerBulletSpeed,@isPlayer))
       end
 
     return bullets
