@@ -1,4 +1,5 @@
 require 'gosu'
+require './dev'
 
 # A class to represent a basic bullet
 class Bullet

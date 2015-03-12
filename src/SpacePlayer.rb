@@ -3,12 +3,12 @@ require 'gosu'
 require './Dev'
 
 # Implement a new class to setup gun commands
-
 # A class to represent a basic player
 class SpacePlayer
   # Allows other classes to read if the player is kill
   attr_reader :isKill, :x, :y
 
+  attr_writer :weaponType
   # Initializes a player with the window, x, y
   def initialize (window, x, y)
     # Establishes a sprite for the palyer
@@ -19,6 +19,10 @@ class SpacePlayer
     @vel_x = @vel_y = 0
     # Stores instance of window
     @window = window
+
+    @weaponType = "basic"
+
+    @primeWeapon = primeWeapon.new(@window,true)
 
     @lastTime = @milliseconds = 0
     # Establishes constant velocity for x and y directions
@@ -89,14 +93,18 @@ class SpacePlayer
 
     if @milliseconds == @SHOT_LAG then
       @milliseconds = 0
-      bulletArray.push(Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true))
-      bulletArray.push(Bullet.new(@window, @x, @y, 1, Dev::PlayerBulletSpeed, true))
-      bulletArray.push(Bullet.new(@window, @x, @y, -1, Dev::PlayerBulletSpeed, true))
+
+      bulletArray = @primeWeapon.makeWeapon(@x,@y,@weaponType)
+
+      # bulletArray.push(Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true))
+      # bulletArray.push(Bullet.new(@window, @x, @y, 1, Dev::PlayerBulletSpeed, true))
+      # bulletArray.push(Bullet.new(@window, @x, @y, -1, Dev::PlayerBulletSpeed, true))
       # return Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true)
     end
 
     return bulletArray
   end
+
 
   # Changes isKill to true if any enemyBullets match the ship's current location
   # within a 5 pixel distance
