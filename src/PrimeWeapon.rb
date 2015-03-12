@@ -6,26 +6,27 @@ class PrimeWeapon
   def initialize(window,isPlayer)
     @isPlayer = isPlayer
     @window= window
+    @speed = Dev::PlayerBulletSpeed
   end
 
   def shootWeapon(x,y, weaponType)
     bullets = Array.new
     case weaponType
       when "basic" then
-        bullets.push(Bullet.new(@window,x,y,0,Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,0,@speed,@isPlayer))
       when "trident" then
-        bullets.push(Bullet.new(@window,x,y,-1,Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,0,Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,1,Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-@speed,@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,0,@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,@speed,@speed,@isPlayer))
       when "star"
-        bullets.push(Bullet.new(@window,x,y,0,Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,-1,Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,-1,0))
-        bullets.push(Bullet.new(@window,x,y,-1,-Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,0,-Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,1,-Dev::PlayerBulletSpeed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,1,0))
-        bullets.push(Bullet.new(@window,x,y,1,Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,0,@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-@speed,@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-@speed,0,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-@speed,-@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,0,-@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,@speed,-@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,@speed,0,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,@speed,@speed,@isPlayer))
       end
 
     return bullets
