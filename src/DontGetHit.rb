@@ -28,8 +28,8 @@ class DontGetHit < Gosu::Window
     @shopScreen = ShopScreen.new(self)
     @optionScreen = OptionScreen.new(self)
 
-    @screenState = Hash[title: false, credit: false,
-      game: false, level: false, shop: true, option: false]
+    @screenState = Hash[title: true, credit: false,
+      game: false, level: false, shop: false, option: false]
 
     @screenArray = Hash[title: @titleScreen, credit: @creditScreen,
       game: @gameScreen, level: @levelScreen, shop: @shopScreen,

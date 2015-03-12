@@ -13,7 +13,7 @@ module Dev
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
   PlayerInertiaY = 0.50
-  PlayerShotLag =  30*10 #ms
+  PlayerShotLag =  3*10 #ms
   PlayerBulletSpeed = -5
   PlayerHitBox = 10
 
