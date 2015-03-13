@@ -6,9 +6,9 @@ module Dev
 
   EscapeLag = 0
 
-  MouseEnabled = true
+  MouseEnabled = false
 
-  FinishDuration = 3000 #ms
+  FinishDuration = 1000 #ms
 
   PlayerVelocity = 3
   PlayerInertiaX = 0.50
@@ -18,7 +18,7 @@ module Dev
   PlayerHitBox = 10
 
   CoinVelocity = 1
-  CoinHitBox = 10
+  CoinHitBox = 16
   CoinValue = 10
 
   SimpleEnemyVelocity = 1 #1
