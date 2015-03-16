@@ -6,7 +6,7 @@ module Dev
 
   EscapeLag = 0
 
-  MouseEnabled = true
+  MouseEnabled = false
 
   FinishDuration = 3000 #ms
 
