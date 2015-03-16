@@ -28,14 +28,15 @@ class DontGetHit < Gosu::Window
     @shopScreen = ShopScreen.new(self)
     @optionScreen = OptionScreen.new(self)
 
-    @screenState = Hash[title: false, credit: false,
-      game: false, level: true, shop: false, option: false]
+    @screenState = Hash[title: true, credit: false,
+      game: false, level: false, shop: false, option: false]
 
     @screenArray = Hash[title: @titleScreen, credit: @creditScreen,
       game: @gameScreen, level: @levelScreen, shop: @shopScreen,
       option: @optionScreen]
 
     @money = 100
+    @gun = "basic"
   end
 
 
@@ -92,20 +93,21 @@ class DontGetHit < Gosu::Window
             @screenArray[:game].levelFilePath = filePath
             @screenArray[:game].newGame = true
           elsif @screenArray[:level].toShop then
-            @screenArray[:shop].money = @money
+            puts @money
+            @screenArray[:shop].shopMoney = @money
             @screenState = @screenState.merge(@screenArray[screenName].update)
-
           end
         elsif screenName == :game and @screenArray[:game].isWon then
+          # Add money once
+          # Get weapon to update
+          @money += @screenArray[:game].money
           @screenState = @screenState.merge(@screenArray[screenName].update)
-          if !@screenState[:game] then
-            @money += @screenArray[:game].money
+        elsif screenName == :shop then
+          if @screenArray[:shop].toLevel then
+            @money = @screenArray[:shop].shopMoney
+            @gun = @screenArray[:shop].gun
           end
-
-        elsif screenName == :shop
-          @money = @screenArray[:shop].money
           @screenState = @screenState.merge(@screenArray[screenName].update)
-
         else
           @screenState = @screenState.merge(@screenArray[screenName].update)
         end

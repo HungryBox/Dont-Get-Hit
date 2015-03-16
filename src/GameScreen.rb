@@ -13,9 +13,11 @@ class GameScreen
   attr_reader :money
   attr_reader :isWon
   attr_reader :isAlive
+  attr_reader :toLevel
 
   attr_writer :levelFilePath
   attr_writer :newGame
+  attr_writer :player
 
   def initialize(window)
     @window = window
@@ -110,15 +112,15 @@ class GameScreen
 
     @time = Gosu::milliseconds - @startTime
 
+    if @newGame == true then
+      levelStart
+      @newGame = false
+    end
+
     if @toLevel then
       @toLevel = false
       @newGame = true
       return Hash[level:true, game:false]
-    end
-
-    if @newGame == true then
-      levelStart
-      @newGame = false
     end
 
     if @stagedEnemies.empty? and @activeEnemies.empty? and !@player.isKill then
@@ -210,11 +212,6 @@ class GameScreen
     @coins.each {|coin| coin.move}
     return Hash[game:true]
   end
-
-  def setLevel(levelName)
-    @levelName = levelName
-  end
-
 
 end
 
