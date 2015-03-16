@@ -9,11 +9,12 @@ require './Button'
 # BUTTON HAS BEEN UP BEFORE REGISTERING THE NEXT CLICK
 
 class LevelScreen
-  attr_reader :toGame, :toShop
+  attr_reader :toGame, :toShop, :levelFilePath
 
   def initialize(window)
     @window = window
     @levelButtonArray = Array.new
+    @levelFilePath = ""
     # Make a header
     # @header = Gosu::Image.new()
     @backButton = Button.new(Dev::LineWidth, Dev::FontHeight,
@@ -44,9 +45,7 @@ class LevelScreen
     end
   end
 
-  def levelFilePath
-    return @levelFilePath
-  end
+
 
   def button_down(id)
     case id
