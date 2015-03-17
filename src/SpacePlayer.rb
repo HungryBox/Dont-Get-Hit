@@ -95,7 +95,7 @@ class SpacePlayer
     if @milliseconds == @SHOT_LAG then
       @milliseconds = 0
 
-      bulletArray = @primeWeapon.shootWeapon(@x,@y,@weaponType)
+      bulletArray = @primeWeapon.shootPrimeWeapon(@x,@y,@weaponType)
       # bulletArray.push(Bullet.new(@window, @x, @y, 0, Dev::PlayerBulletSpeed, true))
       # bulletArray.push(Bullet.new(@window, @x, @y, 1, Dev::PlayerBulletSpeed, true))
       # bulletArray.push(Bullet.new(@window, @x, @y, -1, Dev::PlayerBulletSpeed, true))
@@ -104,7 +104,6 @@ class SpacePlayer
 
     return bulletArray
   end
-
 
   # Changes isKill to true if any enemyBullets match the ship's current location
   # within a 5 pixel distance

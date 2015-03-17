@@ -9,7 +9,7 @@ class PrimeWeapon
     @speed = Dev::PlayerBulletSpeed
   end
 
-  def shootWeapon(x,y, weaponType)
+  def shootPrimeWeapon(x,y, weaponType)
     bullets = Array.new
     case weaponType
       when "basic" then
@@ -42,6 +42,17 @@ class PrimeWeapon
       # if(bStats.size > 4) then
       #   @bullets.push(Bullet.new(@window,x,y,bStats[4],bStats[5]))
       # end
+    end
+
+
+    def shootSecondaryWeapon(x,y,weaponType)
+      bullets = Array.new
+      case weaponType
+      when "basic" then
+        bullets.push(Bullet.new(@window,x-2,y,0,Dev::PlayerBulletSpeed,@isPlayer))
+        bullets.push(Bullet.new(@window,x+2,y,0,Dev::PlayerBulletSpeed,@isPlayer))
+      end
+      return bullets
     end
 
 end
