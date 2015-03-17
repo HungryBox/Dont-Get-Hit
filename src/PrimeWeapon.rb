@@ -15,9 +15,9 @@ class PrimeWeapon
       when "basic" then
         bullets.push(Bullet.new(@window,x,y,0,@speed,@isPlayer))
       when "trident" then
-        bullets.push(Bullet.new(@window,x,y,-@speed,@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,-(@speed/3),@speed,@isPlayer))
         bullets.push(Bullet.new(@window,x,y,0,@speed,@isPlayer))
-        bullets.push(Bullet.new(@window,x,y,@speed,@speed,@isPlayer))
+        bullets.push(Bullet.new(@window,x,y,(@speed/3),@speed,@isPlayer))
       when "star"
         bullets.push(Bullet.new(@window,x,y,0,@speed,@isPlayer))
         bullets.push(Bullet.new(@window,x,y,-@speed,@speed,@isPlayer))

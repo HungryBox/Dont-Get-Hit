@@ -21,7 +21,7 @@ class SpacePlayer
     # Stores instance of window
     @window = window
 
-    @weaponType = "basic"
+    @weaponType = "star"
 
     @primeWeapon = PrimeWeapon.new(@window,true)
 
