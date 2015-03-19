@@ -1,14 +1,14 @@
-filePath = "levelThree.txt"
+filePath = "levelFive.txt"
 
 f = File.open(filePath, 'w')
 
-LevelTimeTot = 20 * 1000
+LevelTimeTot = 30 * 1000
 
 winWidth = 800
 winHeight = 600
 
-ETot = 50
-STot = 25
+ETot = 200
+STot = 200
 
 for i in 1..ETot
   x = rand(winWidth)
@@ -18,11 +18,11 @@ end
 
 for i in 1..STot
   x = 0
-  if rand(1) > 0 then
+  if rand(2) == 1 then
     x = winWidth
   end
-# Sidewinder hieght has to be less than height - 100
-  y = rand(winHeight)
+# Sidewinder height has to be less than (height - 100)
+  y = rand(winHeight-100)
   t = LevelTimeTot/i
   f.puts "S,#{x},#{y},#{t}"
 end
