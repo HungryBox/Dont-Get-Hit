@@ -1,4 +1,3 @@
-require 'gosu'
 # Stores color values for easy access and calling
 module Color
   BLUE = Gosu::Color.argb(0xff0000ff)

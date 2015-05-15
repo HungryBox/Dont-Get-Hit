@@ -1,4 +1,3 @@
-require 'gosu'
 require './ZOrder'
 require './Color'
 
@@ -9,15 +8,18 @@ require './Coin'
 require './EnemyGen'
 
 class GameScreen
+  attr_accessor :moneyAdded
+
   attr_reader :stagedEnemies
   attr_reader :money
   attr_reader :isWon
   attr_reader :isAlive
   attr_reader :toLevel
+  attr_reader :player
 
   attr_writer :levelFilePath
   attr_writer :newGame
-  attr_writer :player
+
 
   def initialize(window)
     @window = window
@@ -47,6 +49,8 @@ class GameScreen
 
     @isAlive = true
 
+    @moneyAdded = false
+
     @startTime = @time = 0
     @money = 0
 
@@ -69,6 +73,8 @@ class GameScreen
     @finishStartTime = @finishEndTime = 0
 
     @isWon = false
+
+    @moneyAdded = false
   end
 
   def draw

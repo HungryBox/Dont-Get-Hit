@@ -1,0 +1,35 @@
+
+
+Level - Stores the level data in text files with the level number as the name
+  1.txt
+    E,376,0,3000
+    Enemy Type, x spawn, y spawn, time spawn in ms
+  2.txt
+  3.txt
+  ...
+  AutomaticLevelGenerator - Randomly generates a level file given file name, level time, window frame, total enemies of each type
+
+media - Stores assests used in game production
+
+src - Stores game files
+  Bullet
+  Coin
+  PrimeWeapon
+
+  SpacePlayer
+  Enemy
+  SideWinderEnemy
+
+  DontGetHit - Runs project
+  ScreenManager - Manages screen state and screen to screen variable passage
+  TitleScreen - Itroduces user to game and allows access to other screens
+  CreditScreen
+  OptionScreen
+  LevelScreen
+  ShopScreen
+  GameScreen
+
+  ZOrder
+  Button
+  Color
+  dev

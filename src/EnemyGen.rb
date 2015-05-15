@@ -1,5 +1,3 @@
-require 'gosu'
-
 require './Enemy'
 require './SideWinderEnemy'
 

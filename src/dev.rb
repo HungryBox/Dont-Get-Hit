@@ -1,4 +1,3 @@
-require 'gosu'
 require './Color'
 
 module Dev
@@ -19,7 +18,7 @@ module Dev
 
   CoinVelocity = 1
   CoinHitBox = 16
-  CoinValue = 10
+  CoinValue = 50
 
   SimpleEnemyVelocity = 1 #1
   SimpleEnemyShotLag = 100 #ms

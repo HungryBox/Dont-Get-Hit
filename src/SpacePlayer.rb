@@ -1,5 +1,3 @@
-require 'gosu'
-
 require './Dev'
 require './PrimeWeapon'
 

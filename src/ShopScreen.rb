@@ -1,4 +1,4 @@
-require 'gosu'
+
 require './ZOrder'
 require './Dev'
 

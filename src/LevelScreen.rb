@@ -1,4 +1,3 @@
-require 'gosu'
 require './ZOrder'
 require './Dev'
 
@@ -67,6 +66,10 @@ class LevelScreen
             @levelFilePath = "levelTwo.txt"
           when 3
             @levelFilePath = "levelThree.txt"
+          when 4
+            @levelFilePath = "levelFour.txt"
+          when 5
+            @levelFilePath = "levelFive.txt"
           else
             @levelFilePath = "levelOne.txt"
           end
