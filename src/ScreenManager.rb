@@ -1,12 +1,12 @@
-require './ZOrder'
-require './Dev'
+require_relative './ZOrder'
+require_relative './Dev'
 
-require './TitleScreen'
-require './CreditScreen'
-require './GameScreen'
-require './LevelScreen'
-require './ShopScreen'
-require './OptionScreen'
+require_relative './TitleScreen'
+require_relative './CreditScreen'
+require_relative './GameScreen'
+require_relative './LevelScreen'
+require_relative './ShopScreen'
+require_relative './OptionScreen'
 
 # Read through code and look for optimizations
 
@@ -16,7 +16,7 @@ class ScreenManager < Gosu::Window
   def initialize
     super(800, 600, false)
     self.caption = "Don't Get Hit"
-    @background_image = Gosu::Image.new(self, "../media/Space.png", true)
+    @background_image = Gosu::Image.new(self, File.dirname(__FILE__)+"/../media/Space.png", true)
 
     @lastTime = @seconds = 0
 

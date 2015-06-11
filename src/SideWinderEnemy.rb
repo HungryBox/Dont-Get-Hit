@@ -1,8 +1,8 @@
-require './Enemy'
+require_relative './Enemy'
 
 class SideWinderEnemy < Enemy
   def initialize(window, x, y, spawnTime)
-    @image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
+    @image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Enemyship.bmp", false)
     # Initializes x,y, downward velocity, and ship angle
     @x, @y, @spawnTime = x, y, spawnTime
 

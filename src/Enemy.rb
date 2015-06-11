@@ -1,6 +1,6 @@
-require './ZOrder'
-require './Dev'
-require './Bullet'
+require_relative './ZOrder'
+require_relative './Dev'
+require_relative './Bullet'
 
 # Creates a basic enemy that moves down the screen and shoots predictably
 class Enemy
@@ -8,7 +8,7 @@ class Enemy
 	# Initializes an enemy at given x, y with given window
 	def initialize(window, x, y, spawnTime)
 		# Establishes sprite for enemy
-		@image = Gosu::Image.new(window, "../media/Enemyship.bmp", false)
+		@image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Enemyship.bmp", false)
 		# Initializes x,y, downward velocity, and ship angle
 		@x, @y, @spawnTime = x, y, spawnTime
 		@velx = 0

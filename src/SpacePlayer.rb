@@ -1,5 +1,5 @@
-require './Dev'
-require './PrimeWeapon'
+require_relative './Dev'
+require_relative './PrimeWeapon'
 
 # Implement a new class to setup gun commands
 # A class to represent a basic player
@@ -11,7 +11,7 @@ class SpacePlayer
   # Initializes a player with the window, x, y
   def initialize (window, x, y)
     # Establishes a sprite for the palyer
-    @image = Gosu::Image.new(window, "../media/Starfighter.bmp", false)
+    @image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Starfighter.bmp", false)
     # Initializes the x,y and last position
     @x, @y = x, y
     # Initializes x-y-velocity

@@ -1,7 +1,7 @@
-require './ZOrder'
-require './Dev'
+require_relative './ZOrder'
+require_relative './Dev'
 
-require './Button'
+require_relative './Button'
 
 class CreditScreen
   def initialize(window)

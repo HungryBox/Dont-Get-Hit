@@ -1,7 +1,7 @@
-require './ZOrder'
-require './Dev'
+require_relative'./ZOrder'
+require_relative'./Dev'
 
-require './Button'
+require_relative'./Button'
 
 # Have a personal function that changes the level information
 # UPDATE BUTTON CLICKING BY CREATING A VARIABLE THAT WILL TELL IF THE MOUSE

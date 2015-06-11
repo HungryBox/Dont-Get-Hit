@@ -1,5 +1,5 @@
-require './Dev'
-require './Bullet'
+require_relative './Dev'
+require_relative './Bullet'
 
 class PrimeWeapon
 

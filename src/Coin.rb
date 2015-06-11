@@ -1,5 +1,5 @@
-require './ZOrder'
-require './Dev'
+require_relative './ZOrder'
+require_relative './Dev'
 
 class Coin
   attr_reader :x, :y
@@ -8,7 +8,7 @@ class Coin
     @window = window
     @x, @y = x, y
 
-    @image = Gosu::Image.new(window, "../media/Coin.png", false)
+    @image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Coin.png", false)
 
     @vel = Dev::CoinVelocity
   end

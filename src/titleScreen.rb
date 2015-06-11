@@ -1,5 +1,5 @@
-require './ZOrder'
-require './Dev'
+require_relative './ZOrder'
+require_relative './Dev'
 
 
 class TitleScreen

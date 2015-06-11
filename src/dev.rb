@@ -1,4 +1,4 @@
-require './Color'
+require_relative './Color'
 
 module Dev
   EnemyCount = 50

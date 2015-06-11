@@ -1,5 +1,5 @@
-require './Enemy'
-require './SideWinderEnemy'
+require_relative './Enemy'
+require_relative './SideWinderEnemy'
 
 class EnemyGen
 
@@ -8,7 +8,7 @@ class EnemyGen
   def initialize(window, fileName)
     @window = window
     @enemies = Array.new
-    fileName = "../Level/"+fileName
+    fileName = File.dirname(__FILE__)+"/../Level/"+fileName
     @gameFile = IO.read(fileName)
     @gameFile.each_line("\n"){|line| genNext(line)}
   end

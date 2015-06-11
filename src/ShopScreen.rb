@@ -1,8 +1,8 @@
 
-require './ZOrder'
-require './Dev'
+require_relative'./ZOrder'
+require_relative'./Dev'
 
-require './Button'
+require_relative'./Button'
 class ShopScreen
   attr_accessor :shopMoney
 

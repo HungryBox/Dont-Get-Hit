@@ -1,4 +1,4 @@
-require './Dev'
+require_relative './Dev'
 
 # A class to represent a basic bullet
 class Bullet
@@ -20,9 +20,9 @@ class Bullet
 			# or even be determined in the bullet class
 			# Assigns filepath to string
 			if(!playerBullet) then
-				string = "../media/EnemyBullet.bmp"
+				string = File.dirname(__FILE__)+"/../media/EnemyBullet.bmp"
 			else
-				string = "../media/PlayerBullet.bmp"
+				string = File.dirname(__FILE__)+"/../media/PlayerBullet.bmp"
 			end
 			# Creates image from string filepath
 			@image = Gosu::Image.new(window, string, false)

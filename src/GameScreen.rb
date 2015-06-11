@@ -1,11 +1,11 @@
-require './ZOrder'
-require './Color'
+require_relative './ZOrder'
+require_relative './Color'
 
-require './SpacePlayer'
-require './Enemy'
-require './Bullet'
-require './Coin'
-require './EnemyGen'
+require_relative './SpacePlayer'
+require_relative './Enemy'
+require_relative './Bullet'
+require_relative './Coin'
+require_relative './EnemyGen'
 
 class GameScreen
   attr_accessor :moneyAdded
@@ -31,7 +31,7 @@ class GameScreen
     @enemyBullets = Array.new
     @coins = Array.new
 
-    @deathImage = Gosu::Image.new(@window, "../media/deathMessage.png", false)
+    @deathImage = Gosu::Image.new(@window, File.dirname(__FILE__)+"/../media/deathMessage.png", false)
     @playAgainButton = Button.new(Dev::LineWidth, Dev::FontHeight,
       @window.width/2, @window.height/2, "Play Again", @window,
       ZOrder::UI)
