@@ -108,6 +108,8 @@ class SpacePlayer
   def checkCollide(enemyBullets)
     enemyBullets.each do |bullet|
       if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox then
+        deathSound = Gosu::Sample.new(File.dirname(__FILE__)+"/../media/Explosion.wav")
+        deathSound.play
         @isKill = true
       end
     end
