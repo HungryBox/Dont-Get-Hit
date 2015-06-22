@@ -38,6 +38,9 @@ class ScreenManager < Gosu::Window
 
     @money = 100
     @gun = "TRIDENT"
+
+    @song = Gosu::Song.new(self, File.dirname(__FILE__)+"/../media/jojo.mp3")
+    @song.play(true)
   end
 
 
