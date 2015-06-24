@@ -11,7 +11,7 @@ class SpacePlayer
   # Initializes a player with the window, x, y
   def initialize (window, x, y)
     # Establishes a sprite for the palyer
-    @image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Starfighter.bmp", false)
+    @image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Starfighter.png", false)
     # Initializes the x,y and last position
     @x, @y = x, y
     # Initializes x-y-velocity
@@ -108,7 +108,7 @@ class SpacePlayer
   def checkCollide(enemyBullets)
     enemyBullets.each do |bullet|
       if Gosu::distance(bullet.x, bullet.y, @x, @y) < Dev::PlayerHitBox then
-        deathSound = Gosu::Sample.new(File.dirname(__FILE__)+"/../media/Explosion.wav")
+        deathSound = Gosu::Sample.new(File.dirname(__FILE__)+"/../media/music/Explosion.wav")
         deathSound.play
         @isKill = true
       end

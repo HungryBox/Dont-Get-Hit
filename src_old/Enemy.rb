@@ -8,7 +8,7 @@ class Enemy
 	# Initializes an enemy at given x, y with given window
 	def initialize(window, x, y, spawnTime)
 		# Establishes sprite for enemy
-		@image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/Enemyship.bmp", false)
+		@image = Gosu::Image.new(window, File.dirname(__FILE__)+"/../media/StandardEnemyShip.png", false)
 		# Initializes x,y, downward velocity, and ship angle
 		@x, @y, @spawnTime = x, y, spawnTime
 		@velx = 0
