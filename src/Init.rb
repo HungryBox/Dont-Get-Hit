@@ -3,6 +3,6 @@ module Init
   WINDOW_WIDTH = 400
   FILE = File.dirname(__FILE__)+"/../"
 
-  TITLE_SONG = Gosu::Song.new(FILE+"media/jojo.m4a")
+  TITLE_SONG = Gosu::Song.new(FILE+"media/music/jojo.m4a")
 end
 
