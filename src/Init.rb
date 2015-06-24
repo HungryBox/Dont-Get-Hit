@@ -4,5 +4,6 @@ module Init
   FILE = File.dirname(__FILE__)+"/../"
 
   TITLE_SONG = Gosu::Song.new(FILE+"media/jojo.m4a")
+  CREDIT_SONG = Gosu::Song.new(FILE+"media/3.m4a")
 end
 
