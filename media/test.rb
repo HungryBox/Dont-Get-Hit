@@ -8,14 +8,18 @@ class Test < Gosu::Window
 
     self.caption = "Windows Test"
 
+    # Test the drawing of an image
+    @image = Gosu::Image.new(self, "Starfighter.png", false)
+    @image.draw(50, 50, 0)
+    
     # Testing this line of code on windows for a file type error
     # Something along the lines of a to_blob error
-    @backgound_image = Gosu::Image.new(self, "Space.png")
+    #@backgound_image = Gosu::Image.new(self, "Space.png")
 
     # Testing this line for a file type error
     # Tested an mp3, m4a, and wav and gt the same errors
-    @song = Gosu::Song.new("music/kushmere.ogg")
-    @song.play
+    #@song = Gosu::Song.new("music/kushmere.ogg")
+    #@song.play
 
     # This line is just here to make sure that everything executes is the song doesn't play and because the background is hard to see
     puts "This got to the end."
